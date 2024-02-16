@@ -1,0 +1,36 @@
+.todoBox {
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+    border-radius: 0.9rem;
+    background-color: #f5f5f5;
+    padding: 1.9rem 1rem 1.9rem 3rem;
+
+}
+
+.todoBox:hover {
+    background-color: #a0b4ca85;
+}
+
+.todoBox>textarea {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background-color: inherit;
+    font-size: 1.2rem;
+    height: 1.25rem;
+    line-height: 1;
+    transition: height 0.3s ease-in-out;
+    transition: min-height 0.3s ease-in-out;
+    white-space: wrap;
+    resize: none;
+}
+
+.todoBox>input[type="checkbox"] {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+}

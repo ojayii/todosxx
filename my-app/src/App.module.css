@@ -1,0 +1,168 @@
+.App {
+    /* background-color: black; */
+}
+
+.App header {
+    /* position: relative; */
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.headerTop input:checked+.slider {
+    background-color: #2196F3;
+}
+
+.headerTop input:hover+.slider {
+    /* box-shadow: 0 0 1px #2196F3; */
+    background-color: #8fabc9e1;
+}
+
+.headerTop input:focus+.slider {
+    /* box-shadow: 0 0 1px #2196F3; */
+    outline: 2px solid black;
+}
+
+.headerTop input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+header > form {
+    /* position: relative; */
+    position: -webkit-sticky; /* Safari */
+    position: relative;
+    top: 0;
+    top: 0rem;
+    margin-bottom: 4rem;
+}
+
+header> form input:hover {
+    background-color: #a0b4ca85;
+}
+
+header > form label {
+    position: absolute;
+    right: 300rem;
+}
+
+header > form input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 4rem;
+    border-radius: 50px;
+    border: none;
+    background-color: #f5f5f5;
+    /* border: 1px solid black; */;
+    font-size: 1.2rem;
+}
+
+header > form button, .App footer button {
+    position: absolute;
+    /* left: 3%; */
+    top: 9px;
+    background-color: transparent;
+    border: none;
+}
+
+header > form button:active, .App footer button:active {
+    transform: scale(0.8);
+}
+
+header > form button:hover, .App footer button:hover {
+    transition: transform 100ms ease-in-out;
+    transform: rotate(15deg);
+}
+
+header > form button {
+    /* left: 100%; */
+    left: 3%;
+}
+
+header > form button img, .App footer button img {
+    width: 2rem;
+    height: auto;
+}
+
+.App main {}
+
+.App footer {
+    position: fixed;
+    bottom: 1.5rem;
+    width: calc(100% - 3rem);
+    padding: 1rem 4rem 1rem 1.5rem;
+    /* width: 100%; */
+    border-radius: 2rem;
+    background-color: #f5f5f5;
+    box-shadow: 1px 1.5rem 8rem black;
+}
+
+.App footer:hover {
+    background-color: #a0b4ca85;
+}
+
+.App footer textarea {
+    width: 100%;
+    height: 1.3rem;
+    border: none;
+    background-color: inherit;
+    font-size: 1.2rem;
+    transition: height 0.3s ease-in-out;
+    white-space: wrap;
+    resize: none;
+}
+
+.App footer button {
+    /* left: 100%; */
+    right: 4%;
+}
+
+.App footer button img {
+    
+}
