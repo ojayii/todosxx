@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ojayii/todo-list-page/static/css/main.50a963e2.css",
+    "main.js": "/ojayii/todo-list-page/static/js/main.381e5ff7.js",
+    "static/js/592.7f72a991.chunk.js": "/ojayii/todo-list-page/static/js/592.7f72a991.chunk.js",
+    "index.html": "/ojayii/todo-list-page/index.html",
+    "main.50a963e2.css.map": "/ojayii/todo-list-page/static/css/main.50a963e2.css.map",
+    "main.381e5ff7.js.map": "/ojayii/todo-list-page/static/js/main.381e5ff7.js.map",
+    "592.7f72a991.chunk.js.map": "/ojayii/todo-list-page/static/js/592.7f72a991.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.50a963e2.css",
+    "static/js/main.381e5ff7.js"
+  ]
+}
