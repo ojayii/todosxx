@@ -172,7 +172,7 @@ header > form button img, .App footer button img {
 .App footer button {
     /* left: 100%; */
     right: 5%;
-    bottom: 1rem;
+    bottom: 0.9rem;
 }
 
 .App footer button img {
