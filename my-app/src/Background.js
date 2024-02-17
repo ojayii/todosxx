@@ -9,17 +9,17 @@ const Background = () => {
 
   let vwidth = window.screen.width
   let vheight = window.screen.height
-  let av = Math.floor((0.01551/100) * (vwidth * vheight))
+  let av = Math.floor((0.018/100) * (vwidth * vheight))
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const newColors = Array.from({ length: av }, () => Math.random());
+    const intervalId = setTimeout(() => {
+      const newColors = Array.from({ length: av }, () => (Math.random() + 0.3));
       // Replae 1 with Math.random()
       setColors(newColors);
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  });
 
   return (
     <div className={styles.boxcontainer}>

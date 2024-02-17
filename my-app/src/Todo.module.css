@@ -18,7 +18,7 @@
     width: 100%;
     padding: 0;
     border: none;
-    background-color: inherit;
+    background-color: transparent;
     font-size: 1.2rem;
     height: 1.25rem;
     line-height: 1;
@@ -26,7 +26,8 @@
     transition: min-height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
-    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
 }
 
 .todoBox>input[type="checkbox"] {

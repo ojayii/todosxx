@@ -1,5 +1,7 @@
 .App {
     /* background-color: black; */
+    max-width: 40rem;
+    margin: 0 auto;
 }
 
 .App header {
@@ -101,6 +103,8 @@ header > form input {
     background-color: #f5f5f5;
     /* border: 1px solid black; */;
     font-size: 1.2rem;
+    /* background-color: rgba(233, 222, 222, 0.322); */
+
 }
 
 header > form button, .App footer button {
@@ -144,6 +148,7 @@ header > form button img, .App footer button img {
     position: fixed;
     bottom: 1.5rem;
     width: calc(100% - 3rem);
+    max-width: 40rem;
     padding: 1rem 17% 1rem 1.5rem;
     /* width: 100%; */
     border-radius: 2rem;
@@ -161,7 +166,7 @@ header > form button img, .App footer button img {
     width: 100%;
     height: 1.3rem;
     border: none;
-    background-color: inherit;
+    background-color: transparent;
     font-size: 1.2rem;
     transition: height 0.3s ease-in-out;
     white-space: wrap;

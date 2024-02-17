@@ -1,7 +1,7 @@
 import styles from "./Todo.module.css"
 import React, { useState, useRef } from 'react';
 
-const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo }) => {
+const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle }) => {
     const textareaRef = useRef(null);
 
     const [isFocused, setIsFocused] = useState(false);
@@ -59,7 +59,10 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
     // console.log(heightValue)
 
     return (
-        <div className={`${styles.todoBox} ${isFocused ? styles.focused : ''}`}>
+        <div 
+            className={`${styles.todoBox} ${isFocused ? styles.focused : ''}`}
+            style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.322)": ""}}
+        >
     {/* <input type="text-area" placeholder="Tap on..."/> */ }
             < textarea
                 ref={textareaRef}
@@ -81,7 +84,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                     // width: '100%',
                     // whiteSpace: isFocused ? 'normal' : 'nowrap',
                 }}
-                placeholder = "Tap on..."
+                placeholder = "Tap on todo item to edit..."
                 value={text}
                 onChange={handleTextChange}
             />
