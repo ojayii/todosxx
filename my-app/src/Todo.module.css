@@ -26,6 +26,7 @@
     transition: min-height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
+    overflow: hidden;
 }
 
 .todoBox>input[type="checkbox"] {
@@ -36,3 +37,7 @@
     width: 1.5rem;
     height: 1.5rem;
 }
+
+/* .todoBox:hover > textarea {
+    height: auto;
+} */

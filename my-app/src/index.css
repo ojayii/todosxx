@@ -9,6 +9,7 @@ body {
   min-height: 100vh;
   font-size: 100%;
   padding: 1.5rem;
+  padding-bottom: 5rem;
   position: relative;
 }
 

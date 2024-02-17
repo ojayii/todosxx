@@ -95,7 +95,7 @@ header > form label {
 
 header > form input {
     width: 100%;
-    padding: 1rem 1rem 1rem 4rem;
+    padding: 1rem 1rem 1rem 19%;
     border-radius: 50px;
     border: none;
     background-color: #f5f5f5;
@@ -106,7 +106,7 @@ header > form input {
 header > form button, .App footer button {
     position: absolute;
     /* left: 3%; */
-    top: 0.9rem;
+    
     background-color: transparent;
     border: none;
 }
@@ -123,6 +123,9 @@ header > form button:active, .App footer button:active {
 header > form button[type="submit"] {
     /* left: 100%; */
     left: 5%;
+    /* top: 0.9rem; */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 header > form .exitsearch {
@@ -141,11 +144,11 @@ header > form button img, .App footer button img {
     position: fixed;
     bottom: 1.5rem;
     width: calc(100% - 3rem);
-    padding: 1rem 4rem 1rem 1.5rem;
+    padding: 1rem 17% 1rem 1.5rem;
     /* width: 100%; */
     border-radius: 2rem;
     background-color: #f5f5f5;
-    box-shadow: 1px 1.5rem 8rem black;
+    box-shadow: 1px 1.9rem 6rem rgb(71, 71, 71);
 }
 
 @media (min-width: 64rem) {
@@ -163,11 +166,13 @@ header > form button img, .App footer button img {
     transition: height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
+    overflow: hidden;
 }
 
 .App footer button {
     /* left: 100%; */
     right: 5%;
+    bottom: 1rem;
 }
 
 .App footer button img {

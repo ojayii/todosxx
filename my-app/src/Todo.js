@@ -46,15 +46,15 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
 
     const handleTextChange = (event) => {
         onTextChange(id, event.target.value);
-      };
-    
-      const handleCheckboxChange = () => {
-        onCheckboxChange(id);
-      };
-    
-      const handleRemove = () => {
-        onRemoveTodo(id);
-      };
+    };
+
+    const handleCheckboxChange = () => {
+    onCheckboxChange(id);
+    };
+
+    const handleRemove = () => {
+    onRemoveTodo(id);
+    };
 
     // console.log(heightValue)
 
