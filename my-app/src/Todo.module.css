@@ -8,8 +8,10 @@
 
 }
 
-.todoBox:hover {
-    background-color: #a0b4ca85;
+@media (min-width: 64rem) {
+    .todoBox:hover {
+        background-color: #a0b4ca85;
+    }
 }
 
 .todoBox>textarea {

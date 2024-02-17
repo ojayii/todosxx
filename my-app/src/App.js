@@ -169,7 +169,7 @@ function App() {
           <button type="submit" >
             <img src="images/search.png" />
           </button>
-          {orderBySearch && <button className={styles.exitsearch} type="button" onClick={handleExitSearch}>Exit Search</button>}
+          {orderBySearch && <button className={styles.exitsearch} type="button" onClick={handleExitSearch}>Cancel</button>}
         </form>
       </header>
       <main>
