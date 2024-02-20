@@ -165,7 +165,7 @@ function App() {
         </div>
         <form onSubmit={handleSearchSubmit} noValidate>
           <label htmlFor="search">Search todos</label>
-          <input style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.322)": ""}} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
+          <input style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
           <button type="submit" >
             <img src="images/search.png" />
           </button>
@@ -191,7 +191,7 @@ function App() {
           />
         ))}
       </main>
-      <footer style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.322)": ""}}>
+      <footer style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}}>
         <textarea
           ref={textareaRef}
           placeholder="Add todo..."
