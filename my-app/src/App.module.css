@@ -104,7 +104,8 @@ header > form input {
     /* border: 1px solid black; */;
     font-size: 1.2rem;
     /* background-color: rgba(233, 222, 222, 0.322); */
-
+    position: sticky;
+    top: 0;
 }
 
 header > form button, .App footer button {

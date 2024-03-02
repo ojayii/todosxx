@@ -16,7 +16,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
         event.target.style.minHeight = `${textareaRef.current.scrollHeight}px`
         
         if (textareaRef.current) {
-            textareaRef.current.style.height = 'auto';
+            // textareaRef.current.style.height = 'auto';
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
         }
     };
@@ -25,66 +25,42 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
         setIsFocused(false);
 
         event.target.style.minHeight = ""
+        event.target.style.height = ""
     };
 
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
 
-    const handleDrag = (event) => {
-        
-    };
-
-    const handleTextareaResize = (event) => {
-        if (textareaRef.current) {
-            textareaRef.current.style.height = 'auto';
-            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-            textareaRef.current.style.transition = 'height 0.3s ease-in-out';
-            
-        }
-    };
-
     const handleTextChange = (event) => {
         onTextChange(id, event.target.value);
+        event.target.style.height = `${textareaRef.current.scrollHeight}px`
     };
 
     const handleCheckboxChange = () => {
-    onCheckboxChange(id);
+        onCheckboxChange(id);
     };
 
     const handleRemove = () => {
-    onRemoveTodo(id);
+        onRemoveTodo(id);
     };
-
-    // console.log(heightValue)
 
     return (
         <div 
             className={`${styles.todoBox} ${isFocused ? styles.focused : ''}`}
-            style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.322)": ""}}
+            style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}}
         >
-    {/* <input type="text-area" placeholder="Tap on..."/> */ }
             < textarea
                 ref={textareaRef}
-                // rows= {isFocused? "": "1"}
                 cols=""
-                // wrap="hard"
-                // value={inputValue}
                 // onChange = { handleChange }
                 onFocus = { handleFocus }
                 onBlur = { handleBlur }
-                onInput={handleTextareaResize}
-                // onClick = { handleDrag }
                 className = {styles.custominput}
                 style={{
-                    height: isFocused ? 'auto' : '',
-                    transition: "height 0.3s ease-in-out"
-                    // overflow: 'hidden',
-                    // textOverflow: 'ellipsis',
-                    // width: '100%',
-                    // whiteSpace: isFocused ? 'normal' : 'nowrap',
+                    // height: isFocused ? 'auto' : '',
                 }}
-                placeholder = "Tap on todo item to edit..."
+                placeholder = "Tap on todo item..."
                 value={text}
                 onChange={handleTextChange}
             />

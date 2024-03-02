@@ -4,24 +4,24 @@ import Background from "./Background"
 import React, { useState, useEffect, useRef } from 'react';
 
 function App() {
+
+  const textareaRef = useRef(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [bgToggle, setBgToggle] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [newTodoText, setNewTodoText] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [orderBySearch, setOrderBySearch] = useState(false);
+
   const submit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.search.value;
     console.log('Submitted value:', inputValue);
   }
 
-  const textareaRef = useRef(null);
-
-  const [isFocused, setIsFocused] = useState(false);
-
-  const [bgToggle, setBgToggle] = useState("");
-
   const handleFocus = (event) => {
     setIsFocused(true);
-
-    // setHeightValue(event.target.style.height);
-
-    event.target.style.minHeight = `${textareaRef.current.scrollHeight}px`
 
     if (event.target) {
       // event.target.style.height = 'auto';
@@ -33,13 +33,9 @@ function App() {
     setIsFocused(false);
 
     event.target.style.minHeight = ""
+    event.target.style.height = "";
   };
 
-  const [todos, setTodos] = useState([]);
-  const [newTodoText, setNewTodoText] = useState('');
-  const [searchValue, setSearchValue] = useState('');
-  const [filteredTodos, setFilteredTodos] = useState([]);
-  const [orderBySearch, setOrderBySearch] = useState(false);
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -47,7 +43,7 @@ function App() {
     setFilteredTodos(storedTodos);
   }, []);
 
-  console.log(bgToggle)
+  // console.log(bgToggle)
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -70,8 +66,6 @@ function App() {
     if (event.target) {
       // event.target.style.height = 'auto';
       event.target.style.height = `${event.target.scrollHeight}px`;
-      event.target.style.transition = 'height 0.3s ease-in-out';
-      // console.log(`${event.target.scrollHeight}px`)
 
       // console.log(event.target)
     }
@@ -125,8 +119,8 @@ function App() {
       }
     });
 
+
     return () => {
-      // Clear all timeouts if the component unmounts
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };
   }, [todos]);
@@ -142,9 +136,9 @@ function App() {
 
   useEffect(() => {
     const localBgToggle = JSON.parse(localStorage.getItem('bgToggle')) || bgToggle;
-    console.log(localBgToggle)
+    // console.log(localBgToggle)
     // setBgToggle(localBgToggle);
-    console.log(bgToggle)
+    // console.log(bgToggle)
   })
 
   // useEffect(() => {
@@ -165,7 +159,7 @@ function App() {
         </div>
         <form onSubmit={handleSearchSubmit} noValidate>
           <label htmlFor="search">Search todos</label>
-          <input style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
+          <input style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.9)": ""}} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
           <button type="submit" >
             <img src="images/search.png" />
           </button>
@@ -173,11 +167,6 @@ function App() {
         </form>
       </header>
       <main>
-        {/* <Todo
-          onTextChange={handleTodoTextChange}
-          onCheckboxChange={handleCheckboxChange}
-          onRemoveTodo={handleRemoveTodo}
-        /> */}
         {filteredTodos.map((todo) => (
           <Todo
             key={todo.id}
@@ -191,7 +180,7 @@ function App() {
           />
         ))}
       </main>
-      <footer style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}}>
+      <footer style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.9)": ""}}>
         <textarea
           ref={textareaRef}
           placeholder="Add todo..."
@@ -200,7 +189,7 @@ function App() {
           onFocus={handleFocus}
           onBlur={handleBlur}
           style={{
-            height: isFocused ? 'auto' : '',
+            // height: isFocused ? 'auto' : '',
             transition: "height 0.3s ease-in-out"
           }}
         />
