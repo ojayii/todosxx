@@ -1,7 +1,13 @@
 import styles from './App.module.css';
-import Todo from "./Todo"
-import Background from "./Background"
+import Todo from './Todo';
+import Background from './Background';
+import Completed from './Completed';
 import React, { useState, useEffect, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/scrollbar';
 
 function App() {
 
@@ -50,7 +56,7 @@ function App() {
     applySearchFilter();
   }, [todos, searchValue]);
 
-  
+
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
@@ -125,7 +131,7 @@ function App() {
     };
   }, [todos]);
 
-  
+
 
   const handleBgToggle = (e) => {
     setBgToggle(e.target.checked)
@@ -143,7 +149,7 @@ function App() {
 
   // useEffect(() => {
   //   localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
-    
+
   // });
 
   return (
@@ -155,11 +161,13 @@ function App() {
           <label className={styles.switch}>
             <input type="checkbox" onInput={handleBgToggle} />
             <span className={styles.slider} />
+            <img src='images/brightness.png' className={styles.lightImg}/>
+            <img src='images/dark.png' className={styles.darkImg}/>
           </label>
         </div>
         <form onSubmit={handleSearchSubmit} noValidate>
           <label htmlFor="search">Search todos</label>
-          <input style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.9)": ""}} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
+          <input style={{ backgroundColor: bgToggle ? "rgba(233, 222, 222, 0.9)" : "" }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
           <button type="submit" >
             <img src="images/search.png" />
           </button>
@@ -167,20 +175,54 @@ function App() {
         </form>
       </header>
       <main>
-        {filteredTodos.map((todo) => (
-          <Todo
-            key={todo.id}
-            id={todo.id}
-            text={todo.text}
-            isChecked={todo.isChecked || false}
-            onTextChange={handleTodoTextChange}
-            onCheckboxChange={handleCheckboxChange}
-            onRemoveTodo={handleRemoveTodo}
-            bgToggle={bgToggle}
-          />
-        ))}
+        <Swiper
+          modules={[Scrollbar]}
+          scrollbar={{ draggable: true }}
+          spaceBetween={10}
+          slidesPerView={1}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide> 
+            <div className={styles.pending}>
+            <Todo
+                
+                onTextChange={handleTodoTextChange}
+                onCheckboxChange={handleCheckboxChange}
+                onRemoveTodo={handleRemoveTodo}
+                bgToggle={bgToggle}
+              />
+              <Todo
+                
+                onTextChange={handleTodoTextChange}
+                onCheckboxChange={handleCheckboxChange}
+                onRemoveTodo={handleRemoveTodo}
+                bgToggle={bgToggle}
+              />
+            {filteredTodos.map((todo) => (
+              <Todo
+                key={todo.id}
+                id={todo.id}
+                text={todo.text}
+                isChecked={todo.isChecked || false}
+                onTextChange={handleTodoTextChange}
+                onCheckboxChange={handleCheckboxChange}
+                onRemoveTodo={handleRemoveTodo}
+                bgToggle={bgToggle}
+              />
+            ))}
+            </div>
+          </SwiperSlide>
+          <SwiperSlide> 
+            <div className={styles.completed}>
+              <Completed />
+            </div>
+          </SwiperSlide>
+          ...
+        </Swiper>
+
       </main>
-      <footer style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.9)": ""}}>
+      <footer style={{ backgroundColor: bgToggle ? "rgba(233, 222, 222, 0.9)" : "" }}>
         <textarea
           ref={textareaRef}
           placeholder="Add todo..."

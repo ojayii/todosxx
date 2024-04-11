@@ -1,4 +1,4 @@
-import styles from "./Todo.module.css"
+import styles from './Todo.module.css'
 import React, { useState, useRef } from 'react';
 
 const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle }) => {

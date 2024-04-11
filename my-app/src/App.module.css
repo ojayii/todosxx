@@ -55,6 +55,7 @@
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
+    z-index: 5;
 }
 
 .headerTop input:checked+.slider {
@@ -77,6 +78,22 @@
     transform: translateX(26px);
 }
 
+.lightImg, .darkImg {
+    position: absolute;
+    width: 26px;
+    height: auto;
+    bottom: 4px;
+    z-index: 3;
+}
+
+.lightImg {
+    left: 4px;
+}
+
+.darkImg {
+    right: 4px;
+}
+
 header > form {
     /* position: relative; */
     position: -webkit-sticky; /* Safari */
@@ -94,6 +111,7 @@ header > form label {
     position: absolute;
     right: 300rem;
 }
+
 
 header > form input {
     width: 100%;
@@ -183,4 +201,11 @@ header > form button img, .App footer button img {
 
 .App footer button img {
     
+}
+
+
+element.style {
+}
+.swiper-horizontal > .swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
+    top: 0;
 }
