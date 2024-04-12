@@ -151,13 +151,13 @@ function App() {
   const handleBgToggle = (e) => {
     setBgToggle(e.target.checked)
     console.log(bgToggle)
-    localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
-    console.log(JSON.parse(localStorage.getItem('bgToggle')))
+    // localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
+    // console.log(JSON.parse(localStorage.getItem('bgToggle')))
   }
 
   useEffect(() => {
-    const localBgToggle = JSON.parse(localStorage.getItem('bgToggle')) || bgToggle;
-    setBgToggle(localBgToggle);
+    // const localBgToggle = JSON.parse(localStorage.getItem('bgToggle')) || bgToggle;
+    // setBgToggle(localBgToggle);
     // console.log(localBgToggle)
     // console.log(bgToggle)
   }, [bgToggle])
