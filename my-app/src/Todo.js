@@ -63,7 +63,6 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 placeholder = "Tap on todo item..."
                 value={text}
                 onChange={handleTextChange}
-                disabled
             />
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} style={style} />
         </div >
