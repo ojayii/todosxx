@@ -111,7 +111,7 @@ function App() {
     );
     const updatedCompletedTodos = todos.filter((todo) => todo.id !== id || !todo.isChecked);
     setTodos(updatedTodos);
-    setCompletedTodos([...completedTodos, ...updatedCompletedTodos]);
+    // setCompletedTodos([...completedTodos, ...updatedCompletedTodos]);
     // setCompletedTodos(todos.filter(todo => !updatedTodos.includes(todo)))
     console.log(completedTodos)
 
@@ -121,8 +121,8 @@ function App() {
   const handleRemoveTodo = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
-    const completedTasks = todos.filter((todo) => todo.id == id);
-    setCompletedTodos(completedTasks);
+    const updatedCompletedTodos = todos.filter((todo) => todo.id == id);
+    setCompletedTodos(updatedCompletedTodos);
 
     // console.log(completedTodos)
   };
@@ -174,7 +174,7 @@ function App() {
         <div className={styles.headerTop}>
           <h1 style={{ color: bgToggle ? "white" : "black" }}>ToDos</h1>
           <label className={styles.switch}>
-            <input type="checkbox" onInput={handleBgToggle} />
+            <input type="checkbox" onChange={handleBgToggle} />
             <span className={styles.slider} />
             <img src='images/brightness.png' className={styles.lightImg}/>
             <img src='images/dark.png' className={styles.darkImg}/>
@@ -231,8 +231,8 @@ function App() {
                 text={todo.text}
                 isChecked={todo.isChecked || false}
                 onTextChange={handleTodoTextChange}
-                onCheckboxChange={handleCheckboxChange}
-                onRemoveTodo={handleRemoveTodo}
+                // onCheckboxChange={handleCheckboxChange}
+                // onRemoveTodo={handleRemoveTodo}
                 bgToggle={bgToggle}
                 setHover={true}
                 is_Disabled={true}
