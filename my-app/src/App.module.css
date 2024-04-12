@@ -222,3 +222,10 @@ element.style {
 .completed, .pending {
     min-height: 65vh;
 }
+
+@media(prefers-color-scheme: dark) {
+    body {
+        /* background-color: black;
+        color: white; */
+    }
+}

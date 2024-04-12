@@ -19,6 +19,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [orderBySearch, setOrderBySearch] = useState(false);
+  const [swipeStatus, setSwipeStatus] = useState(true)
 
   const submit = (e) => {
     e.preventDefault();
@@ -109,12 +110,14 @@ function App() {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo
     );
-    const updatedCompletedTodos = todos.filter((todo) => todo.id !== id || !todo.isChecked);
     setTodos(updatedTodos);
-    // setCompletedTodos([...completedTodos, ...updatedCompletedTodos]);
-    // setCompletedTodos(todos.filter(todo => !updatedTodos.includes(todo)))
-    console.log(completedTodos)
+  };
 
+  const handleCheckboxUnchange = (id) => {
+    const updatedCompletedTodos = completedTodos.map((todo) =>
+      todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo
+    );
+    setCompletedTodos(updatedCompletedTodos);
   };
 
 
@@ -123,12 +126,24 @@ function App() {
     setTodos(updatedTodos);
     const updatedCompletedTodos = todos.filter((todo) => todo.id == id);
     setCompletedTodos([...updatedCompletedTodos, ...completedTodos]);
-    // setCompletedTodos([...todos, ...updatedCompletedTodos]);
-
-    // console.log(completedTodos)
   };
-  // console.log(completedTodos)
 
+  const handleUnRemoveTodo = (id) => {
+    const updatedCompletedTodos = completedTodos.filter((todo) => todo.id !== id);
+    setCompletedTodos(updatedCompletedTodos)
+    const updatedTodos = completedTodos.filter((todo) => todo.id == id);
+    setTodos([...updatedTodos, ...todos]);
+  };
+
+  completedTodos.forEach((todo) => {
+    if (!todo.isChecked) {
+      handleUnRemoveTodo(todo.id);
+      // handleRemoveTodo(todo.id);
+      // const timeoutId = setTimeout(() => {
+      // }, 3000);
+      // timeoutIds.push(timeoutId);
+    }
+  });
 
   useEffect(() => {
     const timeoutIds = [];
@@ -177,8 +192,8 @@ function App() {
           <label className={styles.switch}>
             <input type="checkbox" onChange={handleBgToggle} />
             <span className={styles.slider} />
-            <img src='images/brightness.png' className={styles.lightImg}/>
-            <img src='images/dark.png' className={styles.darkImg}/>
+            <img src='images/brightness.png' className={styles.lightImg} />
+            <img src='images/dark.png' className={styles.darkImg} />
           </label>
         </div>
         <form onSubmit={handleSearchSubmit} noValidate>
@@ -191,16 +206,16 @@ function App() {
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span>Pending</span><span>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span style={{color: swipeStatus && 'blue'}}>Pending</span><span style={{color: !swipeStatus && 'blue'}}>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
           spaceBetween={10}
           slidesPerView={1}
-          onSlideChange={() => console.log('slide change')}
+          onSlideChange={() => setSwipeStatus(!swipeStatus)}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide> 
+          <SwiperSlide>
             <div className={styles.pending}>
               <Todo
                 onTextChange={handleTodoTextChange}
@@ -208,37 +223,37 @@ function App() {
                 onRemoveTodo={handleRemoveTodo}
                 bgToggle={bgToggle}
               />
-            {filteredTodos.map((todo) => (
-              <Todo
-                key={todo.id}
-                id={todo.id}
-                text={todo.text}
-                isChecked={todo.isChecked || false}
-                onTextChange={handleTodoTextChange}
-                onCheckboxChange={handleCheckboxChange}
-                onRemoveTodo={handleRemoveTodo}
-                bgToggle={bgToggle}
-              />
-            ))}
+              {filteredTodos.map((todo) => (
+                <Todo
+                  key={todo.id}
+                  id={todo.id}
+                  text={todo.text}
+                  isChecked={todo.isChecked || false}
+                  onTextChange={handleTodoTextChange}
+                  onCheckboxChange={handleCheckboxChange}
+                  onRemoveTodo={handleRemoveTodo}
+                  bgToggle={bgToggle}
+                />
+              ))}
             </div>
           </SwiperSlide>
-          <SwiperSlide> 
+          <SwiperSlide>
             <div className={styles.completed}>
               {/* <Completed /> */}
               {completedTodos.map((todo) => (
                 <Todo
-                key={todo.id}
-                id={todo.id}
-                text={todo.text}
-                isChecked={todo.isChecked || false}
-                onTextChange={handleTodoTextChange}
-                // onCheckboxChange={handleCheckboxChange}
-                // onRemoveTodo={handleRemoveTodo}
-                bgToggle={bgToggle}
-                setHover={true}
-                is_Disabled={true}
-                style={{textDecoration: 'line-through'}}
-              />
+                  key={todo.id}
+                  id={todo.id}
+                  text={todo.text}
+                  isChecked={todo.isChecked || false}
+                  onTextChange={handleTodoTextChange}
+                  onCheckboxChange={handleCheckboxUnchange}
+                  onRemoveTodo={handleUnRemoveTodo}
+                  bgToggle={bgToggle}
+                  setHover={true}
+                  is_Disabled={true}
+                  style={{ textDecoration: 'line-through' }}
+                />
               ))}
             </div>
           </SwiperSlide>
