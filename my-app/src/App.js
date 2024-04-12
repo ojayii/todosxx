@@ -5,7 +5,6 @@ import Completed from './Completed';
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
@@ -15,6 +14,7 @@ function App() {
   const [isFocused, setIsFocused] = useState(false);
   const [bgToggle, setBgToggle] = useState("");
   const [todos, setTodos] = useState([]);
+  const [completedTodos, setCompletedTodos] = useState([]);
   const [newTodoText, setNewTodoText] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [filteredTodos, setFilteredTodos] = useState([]);
@@ -46,6 +46,8 @@ function App() {
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
     setTodos(storedTodos);
+    const storedCompletedTodos = JSON.parse(localStorage.getItem('completedTodos')) || [];
+    setCompletedTodos(storedCompletedTodos);
     setFilteredTodos(storedTodos);
   }, []);
 
@@ -53,6 +55,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
     applySearchFilter();
   }, [todos, searchValue]);
 
@@ -106,13 +109,25 @@ function App() {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo
     );
+    const updatedCompletedTodos = todos.filter((todo) => todo.id !== id || !todo.isChecked);
     setTodos(updatedTodos);
+    setCompletedTodos([...completedTodos, ...updatedCompletedTodos]);
+    // setCompletedTodos(todos.filter(todo => !updatedTodos.includes(todo)))
+    console.log(completedTodos)
+
   };
+
 
   const handleRemoveTodo = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    const completedTasks = todos.filter((todo) => todo.id == id);
+    setCompletedTodos(completedTasks);
+
+    // console.log(completedTodos)
   };
+  // console.log(completedTodos)
+
 
   useEffect(() => {
     const timeoutIds = [];
@@ -185,15 +200,7 @@ function App() {
         >
           <SwiperSlide> 
             <div className={styles.pending}>
-            <Todo
-                
-                onTextChange={handleTodoTextChange}
-                onCheckboxChange={handleCheckboxChange}
-                onRemoveTodo={handleRemoveTodo}
-                bgToggle={bgToggle}
-              />
               <Todo
-                
                 onTextChange={handleTodoTextChange}
                 onCheckboxChange={handleCheckboxChange}
                 onRemoveTodo={handleRemoveTodo}
@@ -218,7 +225,6 @@ function App() {
               <Completed />
             </div>
           </SwiperSlide>
-          ...
         </Swiper>
 
       </main>

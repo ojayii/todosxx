@@ -8,8 +8,6 @@ const Completed = () => {
     return (
         <>
             <Todo/>
-            <Todo/>
-            <Todo/>
         </>
     )
 }
