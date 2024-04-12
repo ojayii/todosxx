@@ -64,7 +64,7 @@ function App() {
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
       const newTodo = { id: Date.now(), text: newTodoText };
-      setTodos([...todos, newTodo]);
+      setTodos([newTodo, ...todos]);
       setNewTodoText('');
     }
   };
@@ -122,7 +122,8 @@ function App() {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
     const updatedCompletedTodos = todos.filter((todo) => todo.id == id);
-    setCompletedTodos(updatedCompletedTodos);
+    setCompletedTodos([...updatedCompletedTodos, ...completedTodos]);
+    // setCompletedTodos([...todos, ...updatedCompletedTodos]);
 
     // console.log(completedTodos)
   };
