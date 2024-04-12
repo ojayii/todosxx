@@ -100,7 +100,7 @@ header > form {
     position: relative;
     top: 0;
     top: 0rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.6rem;
 }
 
 header> form input:hover {
@@ -162,6 +162,14 @@ header > form button img, .App footer button img {
 }
 
 .App main {}
+
+.status {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    margin-bottom: 1rem;
+}
 
 .App footer {
     position: fixed;

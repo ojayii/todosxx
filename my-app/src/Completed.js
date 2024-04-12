@@ -7,7 +7,7 @@ const Completed = () => {
 
     return (
         <>
-            <Todo/>
+            <Todo text={'Section under cunstruction!!!'}/>
         </>
     )
 }

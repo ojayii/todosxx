@@ -190,6 +190,7 @@ function App() {
         </form>
       </header>
       <main>
+        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span className={styles.pending}>Pending</span><span className={styles.completed}>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
