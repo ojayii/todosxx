@@ -7,7 +7,7 @@ const Completed = () => {
 
     return (
         <>
-            <Todo text={'Section under cunstruction!!!'}/>
+            <Todo text={'Section under cunstruction!!!'} isChecked={true} style={{textDecoration: 'line-through'}}/>
         </>
     )
 }

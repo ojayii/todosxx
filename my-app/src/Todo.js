@@ -1,7 +1,7 @@
 import styles from './Todo.module.css'
 import React, { useState, useRef } from 'react';
 
-const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle }) => {
+const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle, style }) => {
     const textareaRef = useRef(null);
 
     const [isFocused, setIsFocused] = useState(false);
@@ -64,7 +64,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 value={text}
                 onChange={handleTextChange}
             />
-            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} style={style} />
         </div >
     )
 }

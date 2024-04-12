@@ -12,7 +12,7 @@ function App() {
 
   const textareaRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [bgToggle, setBgToggle] = useState("");
+  const [bgToggle, setBgToggle] = useState(false);
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
   const [newTodoText, setNewTodoText] = useState('');
@@ -57,7 +57,7 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
     localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
     applySearchFilter();
-  }, [todos, searchValue]);
+  }, [todos, searchValue, completedTodos]);
 
 
 
@@ -157,10 +157,10 @@ function App() {
 
   useEffect(() => {
     const localBgToggle = JSON.parse(localStorage.getItem('bgToggle')) || bgToggle;
+    setBgToggle(localBgToggle);
     // console.log(localBgToggle)
-    // setBgToggle(localBgToggle);
     // console.log(bgToggle)
-  })
+  }, [bgToggle])
 
   // useEffect(() => {
   //   localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
