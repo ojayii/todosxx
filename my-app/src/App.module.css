@@ -218,3 +218,7 @@ element.style {
 .swiper-horizontal > .swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
     top: 0;
 }
+
+.completed, .pending {
+    min-height: 65vh;
+}

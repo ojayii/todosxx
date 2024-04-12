@@ -1,7 +1,7 @@
 import styles from './Todo.module.css'
 import React, { useState, useRef } from 'react';
 
-const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle, style }) => {
+const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle, style, setHover, is_Disabled }) => {
     const textareaRef = useRef(null);
 
     const [isFocused, setIsFocused] = useState(false);
@@ -56,15 +56,16 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 // onChange = { handleChange }
                 onFocus = { handleFocus }
                 onBlur = { handleBlur }
+                onClick = {  handleFocus }
+                onMouseLeave = {  handleBlur }
                 className = {styles.custominput}
-                style={{
-                    // height: isFocused ? 'auto' : '',
-                }}
+                style={style}
                 placeholder = "Tap on todo item..."
                 value={text}
                 onChange={handleTextChange}
+                disabled={is_Disabled}
             />
-            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} style={style} />
+            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}  />
         </div >
     )
 }

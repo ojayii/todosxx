@@ -190,7 +190,7 @@ function App() {
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span className={styles.pending}>Pending</span><span className={styles.completed}>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span>Pending</span><span>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
@@ -223,7 +223,22 @@ function App() {
           </SwiperSlide>
           <SwiperSlide> 
             <div className={styles.completed}>
-              <Completed />
+              {/* <Completed /> */}
+              {completedTodos.map((todo) => (
+                <Todo
+                key={todo.id}
+                id={todo.id}
+                text={todo.text}
+                isChecked={todo.isChecked || false}
+                onTextChange={handleTodoTextChange}
+                onCheckboxChange={handleCheckboxChange}
+                onRemoveTodo={handleRemoveTodo}
+                bgToggle={bgToggle}
+                setHover={true}
+                is_Disabled={true}
+                style={{textDecoration: 'line-through'}}
+              />
+              ))}
             </div>
           </SwiperSlide>
         </Swiper>
