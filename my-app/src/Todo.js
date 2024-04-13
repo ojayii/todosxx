@@ -49,6 +49,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
         <div 
             className={`${styles.todoBox} ${isFocused ? styles.focused : ''}`}
             style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}}
+            id={`${id}`}
         >
             < textarea
                 ref={textareaRef}
@@ -66,7 +67,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 disabled={is_Disabled}
             />
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}  />
-            {handleDeleteTodo && <button className={styles.deleteTodo} onClick={handleDeleteTodo}>X</button>}
+            {handleDeleteTodo && <button className={styles.deleteTodo} onClick={handleDeleteTodo}></button>}
         </div >
     )
 }

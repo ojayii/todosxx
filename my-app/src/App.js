@@ -145,14 +145,12 @@ function App() {
     }
   });
 
-  const handleDeleteTodo = (id) => {
-    window.confirm('Permanently delete todo item?') && completedTodos.forEach((todo) => {
-      if (true) {
-        const updatedTodos = todos.filter((todo) => todo.id !== id);
-        setTodos(updatedTodos);
-      }
-    });
-  }
+  const handleDeleteTodo = (e) => {
+    if (window.confirm('Permantly delete todo item?')) {
+      const updatedCompletedTodos = completedTodos.filter((todo) => todo.id != e.target.parentElement.id);
+      setCompletedTodos(updatedCompletedTodos)
+    }
+  };
 
   useEffect(() => {
     const timeoutIds = [];
