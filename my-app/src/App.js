@@ -135,15 +135,22 @@ function App() {
     setTodos([...updatedTodos, ...todos]);
   };
 
-  completedTodos.forEach((todo) => {
-    if (!todo.isChecked) {
-      handleUnRemoveTodo(todo.id);
-      // handleRemoveTodo(todo.id);
-      // const timeoutId = setTimeout(() => {
-      // }, 3000);
-      // timeoutIds.push(timeoutId);
-    }
-  });
+
+
+  useEffect(() => {
+    const timeoutIds = [];
+    completedTodos.forEach((todo) => {
+      if (!todo.isChecked) {
+        const timeoutId = setTimeout(() => {
+          handleUnRemoveTodo(todo.id);
+        }, 1500);
+        timeoutIds.push(timeoutId);
+      }
+    });
+    return () => {
+      timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
+  }, [completedTodos]);
 
   const handleDeleteTodo = (e) => {
     if (window.confirm('Permantly delete todo item?')) {
@@ -158,12 +165,10 @@ function App() {
       if (todo.isChecked) {
         const timeoutId = setTimeout(() => {
           handleRemoveTodo(todo.id);
-        }, 3000);
+        }, 1500);
         timeoutIds.push(timeoutId);
       }
     });
-
-
     return () => {
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };

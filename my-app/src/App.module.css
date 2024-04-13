@@ -220,7 +220,7 @@ element.style {
 }
 
 .completed, .pending {
-    min-height: 65vh;
+    min-height: 40vh;
 }
 
 @media(prefers-color-scheme: dark) {
