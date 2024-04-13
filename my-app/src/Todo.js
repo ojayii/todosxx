@@ -13,7 +13,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
 
         // setHeightValue(event.target.style.height);
 
-        event.target.style.minHeight = `${textareaRef.current.scrollHeight}px`
+        event.target.style.height = `${textareaRef.current.scrollHeight}px`
         
         if (textareaRef.current) {
             // textareaRef.current.style.height = 'auto';
@@ -58,8 +58,6 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 // onChange = { handleChange }
                 onFocus = { handleFocus }
                 onBlur = { handleBlur }
-                onClick = {  handleFocus }
-                onMouseLeave = {  handleBlur }
                 className = {styles.custominput}
                 style={style}
                 placeholder = "Tap on todo item..."

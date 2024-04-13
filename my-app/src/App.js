@@ -241,12 +241,6 @@ function App() {
         >
           <SwiperSlide>
             <div className={styles.pending}>
-              {/* <Todo
-                onTextChange={handleTodoTextChange}
-                onCheckboxChange={handleCheckboxChange}
-                onRemoveTodo={handleRemoveTodo}
-                bgToggle={bgToggle}
-              /> */}
               {filteredTodos.map((todo) => (
                 <Todo
                   key={todo.id}
