@@ -48,3 +48,7 @@
 /* .todoBox:hover > textarea {
     height: auto;
 } */
+
+.deleteTodo {
+    background-color: red;
+}

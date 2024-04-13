@@ -145,6 +145,15 @@ function App() {
     }
   });
 
+  const handleDeleteTodo = (id) => {
+    window.confirm('Permanently delete todo item?') && completedTodos.forEach((todo) => {
+      if (true) {
+        const updatedTodos = todos.filter((todo) => todo.id !== id);
+        setTodos(updatedTodos);
+      }
+    });
+  }
+
   useEffect(() => {
     const timeoutIds = [];
     todos.forEach((todo) => {
@@ -206,7 +215,7 @@ function App() {
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span style={{color: swipeStatus && 'blue'}}>Pending</span><span style={{color: !swipeStatus && 'blue'}}>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span style={{color: swipeStatus && '#2196F3'}}>Pending</span><span style={{color: !swipeStatus && '#2196F3'}}>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
@@ -253,6 +262,7 @@ function App() {
                   setHover={true}
                   is_Disabled={true}
                   style={{ textDecoration: 'line-through' }}
+                  handleDeleteTodo={handleDeleteTodo}
                 />
               ))}
             </div>
