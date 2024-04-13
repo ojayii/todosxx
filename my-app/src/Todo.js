@@ -65,6 +65,11 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 value={text}
                 onChange={handleTextChange}
                 disabled={is_Disabled}
+                autoComplete='off'
+                autoCapitalize='off'
+                autoCorrect='off'
+                spellCheck='off'
+                name='content'
             />
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}  />
             {handleDeleteTodo && <button className={styles.deleteTodo} onClick={handleDeleteTodo}></button>}

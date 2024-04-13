@@ -195,6 +195,19 @@ function App() {
 
   // });
 
+  useEffect(() => {
+    const storedDefault = JSON.parse(localStorage.getItem('defaultTodoStatus')) || false;
+    console.log(storedDefault)
+    if (!storedDefault) {
+      localStorage.setItem('defaultTodoStatus', JSON.stringify(true));
+      const newTodo = { id: Date.now(), text: newTodoText };
+      setTodos([newTodo, ...todos]);
+      // setTodos([<Todo/>, ...todos]);
+    }
+    console.log(storedDefault)
+  }, [])
+  console.log(todos)
+
   return (
     <div className={styles.App}>
       {bgToggle && <Background />}
@@ -229,12 +242,12 @@ function App() {
         >
           <SwiperSlide>
             <div className={styles.pending}>
-              <Todo
+              {/* <Todo
                 onTextChange={handleTodoTextChange}
                 onCheckboxChange={handleCheckboxChange}
                 onRemoveTodo={handleRemoveTodo}
                 bgToggle={bgToggle}
-              />
+              /> */}
               {filteredTodos.map((todo) => (
                 <Todo
                   key={todo.id}
