@@ -4,10 +4,12 @@
     margin-bottom: 1rem;
     border-radius: 0.9rem;
     background-color: #f5f5f5;
-    padding: 2rem 1rem 2rem 3rem;
+    /* padding: 2rem 1rem 2rem 3rem; */
+    padding: 2rem 1rem 2rem 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 3px;
 }
 
 @media (min-width: 64rem) {
@@ -17,7 +19,7 @@
 }
 
 .todoBox>textarea {
-    width: 95%;
+    width: 90%;
     padding: 0;
     border: none;
     background-color: transparent;
@@ -38,10 +40,6 @@
 }
 
 .todoBox>input[type="checkbox"] {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -55,10 +53,9 @@
     background: url('../public/images/multiply.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     object-fit: contain;
     border: none;
-    width: 0.7rem;
-    height: 0.7rem;
-
+    width: 0.8rem;
+    height: 0.8rem;
 }

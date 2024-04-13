@@ -33,7 +33,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
     };
 
     const handleTextChange = (event) => {
-        onTextChange(id, event.target.value);
+        onTextChange && onTextChange(id, event.target.value);
         event.target.style.height = `${textareaRef.current.scrollHeight}px`
     };
 
@@ -51,6 +51,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
             style={{backgroundColor: bgToggle? "rgba(233, 222, 222, 0.7)": ""}}
             id={`${id}`}
         >
+            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}  />
             < textarea
                 ref={textareaRef}
                 cols=""
@@ -71,7 +72,6 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 spellCheck='off'
                 name='content'
             />
-            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}  />
             {handleDeleteTodo && <button className={styles.deleteTodo} onClick={handleDeleteTodo}></button>}
         </div >
     )

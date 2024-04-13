@@ -1,7 +1,6 @@
 import styles from './App.module.css';
 import Todo from './Todo';
 import Background from './Background';
-import Completed from './Completed';
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
@@ -271,12 +270,12 @@ function App() {
                   id={todo.id}
                   text={todo.text}
                   isChecked={todo.isChecked || false}
-                  onTextChange={handleTodoTextChange}
+                  // onTextChange={handleTodoTextChange}
                   onCheckboxChange={handleCheckboxUnchange}
                   onRemoveTodo={handleUnRemoveTodo}
                   bgToggle={bgToggle}
                   setHover={true}
-                  is_Disabled={true}
+                  // is_Disabled={true}
                   style={{ textDecoration: 'line-through' }}
                   handleDeleteTodo={handleDeleteTodo}
                 />
