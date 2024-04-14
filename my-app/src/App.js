@@ -1,6 +1,5 @@
 import styles from './App.module.css';
 import Todo from './Todo';
-import Background from './Background';
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
@@ -18,7 +17,8 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [orderBySearch, setOrderBySearch] = useState(false);
-  const [swipeStatus, setSwipeStatus] = useState(true)
+  const [swipeStatus, setSwipeStatus] = useState(true);
+  const [isNewUser, setIsNewUser] = useState(null);
 
   const submit = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ function App() {
   const handleBlur = (event) => {
     setIsFocused(false);
 
-    event.target.style.minHeight = ""
+    // event.target.style.minHeight = ""
     event.target.style.height = "";
   };
 
@@ -155,7 +155,7 @@ function App() {
     if (window.confirm('Permantly delete todo item?')) {
       const updatedCompletedTodos = completedTodos.filter((todo) => todo.id != e.target.parentElement.id);
       setCompletedTodos(updatedCompletedTodos)
-    }
+    } 
   };
 
   useEffect(() => {
@@ -195,24 +195,22 @@ function App() {
   // });
 
   useEffect(() => {
-    const storedDefault = JSON.parse(localStorage.getItem('defaultTodoStatus')) || false;
-    console.log(storedDefault)
-    if (!storedDefault) {
-      localStorage.setItem('defaultTodoStatus', JSON.stringify(true));
-      const newTodo = { id: Date.now(), text: newTodoText };
-      setTodos([newTodo, ...todos]);
-      // setTodos([<Todo/>, ...todos]);
+    const isNewUser = !JSON.parse(localStorage.getItem('isNewUser')) || false;
+    if (isNewUser) {
+      localStorage.setItem('isNewUser', JSON.stringify(true));
+      const todoOne = { id: Date.now(), text: 'Welcome to ToDos' };
+      // const todoTwo = { id: Date.now() + 1, text: newTodoText };
+      setTodos([todoOne, ...todos]);
     }
-    console.log(storedDefault)
+    setIsNewUser(isNewUser);
   }, [])
-  console.log(todos)
 
   return (
-    <div className={styles.App}>
-      {bgToggle && <Background />}
+    <div className={styles.App} style={{ backgroundColor: bgToggle && 'black'}}>
+      {/* {bgToggle && <Background />} */}
       <header>
         <div className={styles.headerTop}>
-          <h1 style={{ color: bgToggle ? "white" : "black" }}>ToDos</h1>
+          <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
           <label className={styles.switch}>
             <input type="checkbox" onChange={handleBgToggle} />
             <span className={styles.slider} />
@@ -222,15 +220,15 @@ function App() {
         </div>
         <form onSubmit={handleSearchSubmit} noValidate>
           <label htmlFor="search">Search todos</label>
-          <input style={{ backgroundColor: bgToggle ? "rgba(233, 222, 222, 0.9)" : "" }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
-          <button type="submit" >
+          <input style={{ backgroundColor: bgToggle && '#101010', color: bgToggle && '#DEDEDE' }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
+          <button type="submit">
             <img src="images/search.png" />
           </button>
-          {orderBySearch && <button className={styles.exitsearch} type="button" onClick={handleExitSearch}>Cancel</button>}
+          {orderBySearch && <button className={styles.exitsearch} style={{ color: bgToggle && '#DEDEDE' }} type="button" onClick={handleExitSearch}>Cancel</button>}
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "white" : "black" }}><span style={{color: swipeStatus && '#2196F3'}}>Pending</span><span style={{color: !swipeStatus && '#2196F3'}}>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "#DEDEDE" : "black" }}><span style={{color: swipeStatus && '#2196F3'}}>Pending</span><span style={{color: !swipeStatus && '#2196F3'}}>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
@@ -251,6 +249,7 @@ function App() {
                   onCheckboxChange={handleCheckboxChange}
                   onRemoveTodo={handleRemoveTodo}
                   bgToggle={bgToggle}
+                  style={{ color: bgToggle && '#DEDEDE' }}
                 />
               ))}
             </div>
@@ -270,7 +269,7 @@ function App() {
                   bgToggle={bgToggle}
                   setHover={true}
                   // is_Disabled={true}
-                  style={{ textDecoration: 'line-through' }}
+                  style={{ textDecoration: 'line-through', color: bgToggle && '#DEDEDE' }}
                   handleDeleteTodo={handleDeleteTodo}
                 />
               ))}
@@ -279,7 +278,7 @@ function App() {
         </Swiper>
 
       </main>
-      <footer style={{ backgroundColor: bgToggle ? "rgba(233, 222, 222, 0.9)" : "" }}>
+      <footer style={{ backgroundColor: bgToggle && '#0D0D0D', boxShadow: bgToggle && 'none' }}>
         <textarea
           ref={textareaRef}
           placeholder="Add todo..."
@@ -289,7 +288,8 @@ function App() {
           onBlur={handleBlur}
           style={{
             // height: isFocused ? 'auto' : '',
-            transition: "height 0.3s ease-in-out"
+            transition: "height 0.3s ease-in-out",
+            color: bgToggle && '#DEDEDE'
           }}
         />
         <button onClick={handleAddTodo}>

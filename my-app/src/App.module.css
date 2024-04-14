@@ -1,7 +1,10 @@
 .App {
-    /* background-color: black; */
+    background-color: white;
+    min-height: 100vh;
     max-width: 40rem;
     margin: 0 auto;
+    padding: 1.5rem;
+    padding-bottom: 5rem;
 }
 
 .App header {
@@ -64,7 +67,8 @@
 
 .headerTop input:hover+.slider {
     /* box-shadow: 0 0 1px #2196F3; */
-    background-color: #8fabc9e1;
+    /* background-color: #8fabc9e1; */
+    filter: brightness(1.2);
 }
 
 .headerTop input:focus+.slider {

@@ -26,8 +26,8 @@
     font-size: 1.2rem;
     height: 1.25rem;
     line-height: 1;
+    transition: max-height 0.3s ease-in-out;
     transition: height 0.3s ease-in-out;
-    transition: min-height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
     /* text-overflow: ellipsis; */
@@ -42,6 +42,7 @@
 .todoBox>input[type="checkbox"] {
     width: 1.5rem;
     height: 1.5rem;
+    accent-color: #2196F3;
 }
 
 /* .todoBox:hover > textarea {
