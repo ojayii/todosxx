@@ -9,7 +9,7 @@ export default function SlideNextButton({swipeStatus}) {
     <button 
       onClick={() => swiper.slideNext()}
       className={`${styles.swipeBtns} ${styles.completedBtn}`}
-      style={{color: swipeStatus === 'true' && '#2196F3'}}
-    >Completed</button>
+      style={{color: swipeStatus === 'false' && '#2196F3'}}
+    ></button>
   );
 }

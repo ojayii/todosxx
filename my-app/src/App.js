@@ -2,9 +2,9 @@ import styles from './App.module.css';
 import Todo from './Todo';
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar } from 'swiper/modules';
+// import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/scrollbar';
+// import 'swiper/css/scrollbar';
 import SlideNextButton from './SlideNextButton';
 import SlidePreviousButton from './SlidePreviousButton';
 
@@ -216,16 +216,19 @@ function App() {
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "#DEDEDE" : "black" }}><span style={{color: swipeStatus === 'true' && '#2196F3'}}>Pending</span><span style={{color: swipeStatus === 'false' && '#2196F3'}}>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "#DEDEDE" : "black" }}>
+          <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3'}}>Pending</span>
+          <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3'}}>Completed</span>
+        </p>
         <Swiper
-          modules={[Scrollbar]}
-          scrollbar={{ draggable: true }}
+          // modules={[Scrollbar]}
+          // scrollbar={{ draggable: true }}
           spaceBetween={10}
           slidesPerView={1}
           onSlideChange={() => setSwipeStatus(swipeStatus === 'true'? 'false': 'true')}
         >
-          {/* <SlideNextButton swipeStatus={swipeStatus}/> */}
           <SwiperSlide>  
+            <SlideNextButton swipeStatus={swipeStatus}/>
             <div className={styles.pending}>
               {filteredTodos.map((todo) => (
                 <Todo
@@ -242,8 +245,8 @@ function App() {
               ))}
             </div>
           </SwiperSlide>
-          {/* <SlidePreviousButton swipeStatus={swipeStatus}/> */}
           <SwiperSlide>
+            <SlidePreviousButton swipeStatus={swipeStatus}/>
             <div className={styles.completed}>
               {completedTodos.map((todo) => (
                 <Todo

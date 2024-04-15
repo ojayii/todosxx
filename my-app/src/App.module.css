@@ -149,14 +149,26 @@ header > form button img, .App footer button img {
     height: auto;
 }
 
-.App main {}
+.App main {
+    position: relative;
+}
 
 .status {
     width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 20%;
-    margin-bottom: 1rem;
+    /* justify-content: center; */
+    align-items: center;
+    /* gap: 20%; */
+    /* margin-bottom: 1rem; */
+    position: absolute;
+    top: 0;
+}
+
+.status>span {
+    height: 1.9rem;
+    width: 50%;
+    text-align: center;
+    border-radius: 5%;
 }
 
 .App footer {
@@ -194,7 +206,8 @@ header > form button img, .App footer button img {
 }
 
 .completed, .pending {
-    min-height: 40vh;
+    min-height: 50vh;
+    margin-top: 0.2rem;
 }
 
 .swipeBtns {
@@ -202,10 +215,12 @@ header > form button img, .App footer button img {
     height: 2rem;
     background-color: transparent;
     border: none;
-    position: absolute !important;
-    top: 0 !important;
     z-index: 1000;
-    pointer-events: auto;
-    user-select: auto;
-    touch-action: auto;
+    text-align: center;
+    font-size: 1rem;
+    /* opacity: 0; */
+}
+
+.completedBtn {
+    margin-left: 50%;
 }

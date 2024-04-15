@@ -9,7 +9,7 @@ export default function SlidePreviousButton({swipeStatus}) {
     <button 
         onClick={() => swiper.slidePrev()}
         className={`${styles.swipeBtns} ${styles.pendingBtn}`}
-        style={{color: swipeStatus === 'false' && '#2196F3'}}
-    >Pending</button>
+        style={{color: swipeStatus === 'true' && '#2196F3'}}
+    ></button>
   );
 }
