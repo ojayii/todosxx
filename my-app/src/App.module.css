@@ -66,13 +66,10 @@
 }
 
 .headerTop input:hover+.slider {
-    /* box-shadow: 0 0 1px #2196F3; */
-    /* background-color: #8fabc9e1; */
-    filter: brightness(1.2);
+    background-color: #8fabc9e1;
 }
 
 .headerTop input:focus+.slider {
-    /* box-shadow: 0 0 1px #2196F3; */
     outline: 2px solid black;
 }
 
@@ -99,8 +96,6 @@
 }
 
 header > form {
-    /* position: relative; */
-    position: -webkit-sticky; /* Safari */
     position: relative;
     top: 0;
     top: 0rem;
@@ -123,17 +118,13 @@ header > form input {
     border-radius: 50px;
     border: none;
     background-color: #f5f5f5;
-    /* border: 1px solid black; */;
     font-size: 1.2rem;
-    /* background-color: rgba(233, 222, 222, 0.322); */
     position: sticky;
     top: 0;
 }
 
 header > form button, .App footer button {
     position: absolute;
-    /* left: 3%; */
-    
     background-color: transparent;
     border: none;
 }
@@ -142,15 +133,8 @@ header > form button:active, .App footer button:active {
     transform: scale(0.8);
 }
 
-/* header > form button:hover, .App footer button:hover {
-    transition: transform 100ms ease-in-out;
-    transform: rotate(15deg);
-} */
-
 header > form button[type="submit"] {
-    /* left: 100%; */
     left: 5%;
-    /* top: 0.9rem; */
     top: 50%;
     transform: translateY(-50%);
 }
@@ -181,7 +165,6 @@ header > form button img, .App footer button img {
     width: calc(100% - 3rem);
     max-width: 40rem;
     padding: 1rem 17% 1rem 1.5rem;
-    /* width: 100%; */
     border-radius: 2rem;
     background-color: #f5f5f5;
     box-shadow: 1px 1.9rem 6rem rgb(71, 71, 71);
@@ -207,7 +190,6 @@ header > form button img, .App footer button img {
 }
 
 .App footer button {
-    /* left: 100%; */
     right: 5%;
     bottom: 0.9rem;
 }

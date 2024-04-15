@@ -23,5 +23,5 @@ body {
 
 textarea {
   max-height: 12rem;
-  overflow-y: scroll;
+  /* overflow: scroll; */
 }

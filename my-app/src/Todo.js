@@ -5,7 +5,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
     const textareaRef = useRef(null);
 
     const [isFocused, setIsFocused] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(text);
     const [heightValue, setHeightValue] = useState('');
     const [test, setTest] = useState(null)
 
@@ -24,7 +24,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
 
     const handleBlur = (event) => {
         setIsFocused(false);
-
+        onTextChange && onTextChange(id, inputValue);
         event.target.style.minHeight = ""
         event.target.style.height = ""
     };
@@ -34,10 +34,11 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
     };
 
     const handleTextChange = (event) => {
-        onTextChange && onTextChange(id, event.target.value);
+        // onTextChange && onTextChange(id, event.target.value);
         // event.target.style.maxHeight = `${event.target.scrollHeight}px`
+        setInputValue(event.target.value);
         event.target.style.height = `${event.target.scrollHeight}px`
-    };
+    }; 
 
     // const handleTextChange = (event) => {
     //     const handler = setTimeout(() => {
@@ -77,6 +78,12 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
         onRemoveTodo(id);
     };
 
+    const changeTimeout = (e) => {
+        setTimeout(() => {
+            return handleTextChange(e)
+        }, 3000)
+    }
+
     return (
         <div
             className={`${styles.todoBox} ${isFocused ? styles.focused : ''}`}
@@ -93,7 +100,7 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
                 className={styles.custominput}
                 style={style}
                 placeholder="Tap on todo item..."
-                value={text}
+                value={inputValue}
                 onChange={handleTextChange}
                 disabled={is_Disabled}
                 autoComplete='off'

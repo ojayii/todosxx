@@ -86,6 +86,12 @@ function App() {
     );
   };
 
+  const handleCompletedTodoTextChange = (id, newText) => {
+    setCompletedTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
+    );
+  };
+
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
@@ -221,7 +227,7 @@ function App() {
         <form onSubmit={handleSearchSubmit} noValidate>
           <label htmlFor="search">Search todos</label>
           <input style={{ backgroundColor: bgToggle && '#101010', color: bgToggle && '#DEDEDE' }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
-          <button type="submit">
+          <button type="submit" style={{ filter: bgToggle && 'invert(1)' }}>
             <img src="images/search.png" />
           </button>
           {orderBySearch && <button className={styles.exitsearch} style={{ color: bgToggle && '#DEDEDE' }} type="button" onClick={handleExitSearch}>Cancel</button>}
@@ -263,7 +269,7 @@ function App() {
                   id={todo.id}
                   text={todo.text}
                   isChecked={todo.isChecked || false}
-                  // onTextChange={handleTodoTextChange}
+                  onTextChange={handleCompletedTodoTextChange}
                   onCheckboxChange={handleCheckboxUnchange}
                   onRemoveTodo={handleUnRemoveTodo}
                   bgToggle={bgToggle}
@@ -292,7 +298,7 @@ function App() {
             color: bgToggle && '#DEDEDE'
           }}
         />
-        <button onClick={handleAddTodo}>
+        <button onClick={handleAddTodo} style={{ filter: bgToggle && 'invert(1)' }}>
           <img src="images/plus.png" />
         </button>
       </footer>
