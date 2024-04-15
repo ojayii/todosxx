@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import SlideNextButton from './SlideNextButton';
+import SlidePreviousButton from './SlidePreviousButton';
 
 function App() {
 
@@ -17,31 +19,21 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [orderBySearch, setOrderBySearch] = useState(false);
-  const [swipeStatus, setSwipeStatus] = useState(true);
+  const [swipeStatus, setSwipeStatus] = useState('true');
   const [isNewUser, setIsNewUser] = useState(null);
-
-  const submit = (e) => {
-    e.preventDefault();
-    const inputValue = e.target.elements.search.value;
-    console.log('Submitted value:', inputValue);
-  }
 
   const handleFocus = (event) => {
     setIsFocused(true);
-
     if (event.target) {
-      // event.target.style.height = 'auto';
       event.target.style.height = `${event.target.scrollHeight}px`;
     }
   };
 
   const handleBlur = (event) => {
     setIsFocused(false);
-
     // event.target.style.minHeight = ""
     event.target.style.height = "";
   };
-
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -51,15 +43,11 @@ function App() {
     setFilteredTodos(storedTodos);
   }, []);
 
-  // console.log(bgToggle)
-
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
     localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
     applySearchFilter();
   }, [todos, searchValue, completedTodos]);
-
-
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== '') {
@@ -73,10 +61,7 @@ function App() {
     setNewTodoText(event.target.value);
 
     if (event.target) {
-      // event.target.style.height = 'auto';
       event.target.style.height = `${event.target.scrollHeight}px`;
-
-      // console.log(event.target)
     }
   };
 
@@ -140,8 +125,6 @@ function App() {
     setTodos([...updatedTodos, ...todos]);
   };
 
-
-
   useEffect(() => {
     const timeoutIds = [];
     completedTodos.forEach((todo) => {
@@ -179,26 +162,25 @@ function App() {
     };
   }, [todos]);
 
-
-
-  const handleBgToggle = (e) => {
-    setBgToggle(e.target.checked)
-    console.log(bgToggle)
-    // localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
-    // console.log(JSON.parse(localStorage.getItem('bgToggle')))
-  }
+  useEffect(() => {
+    const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setBgToggle(isDarkModePreferred);
+  }, []);
 
   useEffect(() => {
-    // const localBgToggle = JSON.parse(localStorage.getItem('bgToggle')) || bgToggle;
-    // setBgToggle(localBgToggle);
-    // console.log(localBgToggle)
-    // console.log(bgToggle)
-  }, [bgToggle])
+    localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
+  }, [bgToggle]);
 
-  // useEffect(() => {
-  //   localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
+  useEffect(() => {
+    const storedBgToggle = JSON.parse(localStorage.getItem('bgToggle'));
+    if (storedBgToggle !== null) {
+      setBgToggle(storedBgToggle);
+    }
+  }, []);
 
-  // });
+  const handleBgToggle = (e) => {
+    setBgToggle((prevBgToggle) => !prevBgToggle);
+  }
 
   useEffect(() => {
     const isNewUser = !JSON.parse(localStorage.getItem('isNewUser')) || false;
@@ -218,7 +200,7 @@ function App() {
         <div className={styles.headerTop}>
           <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
           <label className={styles.switch}>
-            <input type="checkbox" onChange={handleBgToggle} />
+            <input type="checkbox" onChange={handleBgToggle} checked={bgToggle && 'true'} />
             <span className={styles.slider} />
             <img src='images/brightness.png' className={styles.lightImg} />
             <img src='images/dark.png' className={styles.darkImg} />
@@ -234,16 +216,16 @@ function App() {
         </form>
       </header>
       <main>
-        <p className={styles.status} style={{ color: bgToggle ? "#DEDEDE" : "black" }}><span style={{color: swipeStatus && '#2196F3'}}>Pending</span><span style={{color: !swipeStatus && '#2196F3'}}>Completed</span></p>
+        <p className={styles.status} style={{ color: bgToggle ? "#DEDEDE" : "black" }}><span style={{color: swipeStatus === 'true' && '#2196F3'}}>Pending</span><span style={{color: swipeStatus === 'false' && '#2196F3'}}>Completed</span></p>
         <Swiper
           modules={[Scrollbar]}
           scrollbar={{ draggable: true }}
           spaceBetween={10}
           slidesPerView={1}
-          onSlideChange={() => setSwipeStatus(!swipeStatus)}
-          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => setSwipeStatus(swipeStatus === 'true'? 'false': 'true')}
         >
-          <SwiperSlide>
+          {/* <SlideNextButton swipeStatus={swipeStatus}/> */}
+          <SwiperSlide>  
             <div className={styles.pending}>
               {filteredTodos.map((todo) => (
                 <Todo
@@ -260,9 +242,9 @@ function App() {
               ))}
             </div>
           </SwiperSlide>
+          {/* <SlidePreviousButton swipeStatus={swipeStatus}/> */}
           <SwiperSlide>
             <div className={styles.completed}>
-              {/* <Completed /> */}
               {completedTodos.map((todo) => (
                 <Todo
                   key={todo.id}
@@ -293,7 +275,6 @@ function App() {
           onFocus={handleFocus}
           onBlur={handleBlur}
           style={{
-            // height: isFocused ? 'auto' : '',
             transition: "height 0.3s ease-in-out",
             color: bgToggle && '#DEDEDE'
           }}

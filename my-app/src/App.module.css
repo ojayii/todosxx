@@ -186,7 +186,6 @@ header > form button img, .App footer button img {
     transition: height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
-    overflow: hidden;
 }
 
 .App footer button {
@@ -194,24 +193,19 @@ header > form button img, .App footer button img {
     bottom: 0.9rem;
 }
 
-.App footer button img {
-    
-}
-
-
-element.style {
-}
-.swiper-horizontal > .swiper-scrollbar, .swiper-scrollbar.swiper-scrollbar-horizontal {
-    top: 0;
-}
-
 .completed, .pending {
     min-height: 40vh;
 }
 
-@media(prefers-color-scheme: dark) {
-    body {
-        /* background-color: black;
-        color: white; */
-    }
+.swipeBtns {
+    width: 50%;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    position: absolute !important;
+    top: 0 !important;
+    z-index: 1000;
+    pointer-events: auto;
+    user-select: auto;
+    touch-action: auto;
 }
