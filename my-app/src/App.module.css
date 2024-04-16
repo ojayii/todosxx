@@ -160,15 +160,38 @@ header > form button img, .App footer button img {
     align-items: center;
     /* gap: 20%; */
     /* margin-bottom: 1rem; */
-    position: absolute;
+    /* position: absolute;
+    top: 0; */
+    position: sticky;
     top: 0;
+    z-index: 200;
+    background-color: white;
+    padding-top: 1rem;
 }
 
 .status>span {
     height: 1.9rem;
     width: 50%;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+}
+
+.todoCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    /* line-height: 0.6; */
 }
 
 .App footer {
