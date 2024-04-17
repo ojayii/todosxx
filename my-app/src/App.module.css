@@ -99,7 +99,7 @@ header > form {
     position: relative;
     top: 0;
     top: 0rem;
-    margin-bottom: 3.3rem;
+    margin-bottom: 2.1rem;
 }
 
 header> form input:hover {
@@ -167,7 +167,7 @@ header > form button img, .App footer button img {
     z-index: 10;
     background-color: white;
     height: 1px;
-    padding-top: 1.6rem;
+    padding-top: 1.8rem;
     /* transform: translateY(2rem); */
 }
 
