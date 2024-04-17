@@ -12,7 +12,7 @@ function App() {
 
   const textareaRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [bgToggle, setBgToggle] = useState(false);
+  const [bgToggle, setBgToggle] = useState(null);
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
   const [newTodoText, setNewTodoText] = useState('');
@@ -165,19 +165,21 @@ function App() {
   }, [todos]);
 
   useEffect(() => {
-    const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: light)').matches;
     setBgToggle(isDarkModePreferred);
+    // console.log(isDarkModePreferred)
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
+    if (bgToggle !== null) {
+      localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
+      console.log(bgToggle)
+    }
   }, [bgToggle]);
 
   useEffect(() => {
     const storedBgToggle = JSON.parse(localStorage.getItem('bgToggle'));
-    if (storedBgToggle !== null) {
-      setBgToggle(storedBgToggle);
-    }
+    setBgToggle(storedBgToggle);
   }, []);
 
   const handleBgToggle = (e) => {
@@ -234,10 +236,10 @@ function App() {
       <main>
         <p className={styles.status} 
            style={{ color: bgToggle ? "#DEDEDE" : "#8B97A3", backgroundColor: bgToggle === true && 'black' }}>
-          <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3'}}>Pending 
+          <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Pending 
             {pendingTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'true'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{pendingTodosCount}</span>} 
           </span>
-          <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3'}}>Completed 
+          <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Completed 
             {completedTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'false'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{completedTodosCount}</span>}
           </span>
         </p>

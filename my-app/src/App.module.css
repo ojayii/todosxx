@@ -180,7 +180,7 @@ header > form button img, .App footer button img {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background-color: inherit;
+    background-color: white;
     border-bottom: 3px solid transparent;
     font-weight: 500;
 }
