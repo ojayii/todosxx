@@ -233,6 +233,10 @@ header > form button img, .App footer button img {
 
 .completed, .pending {
     min-height: 50vh;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
     /* margin-top: 0.2rem; */
 }
 
@@ -251,4 +255,18 @@ header > form button img, .App footer button img {
 
 .completedBtn {
     margin-left: 50%;
+}
+
+.emptyListState {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyListState > img {
+    width: 100%;
+    height: auto;
 }

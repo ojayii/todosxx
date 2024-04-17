@@ -248,11 +248,20 @@ function App() {
           // scrollbar={{ draggable: true }}
           spaceBetween={10}
           slidesPerView={1}
-          onSlideChange={() => setSwipeStatus(swipeStatus === 'true'? 'false': 'true')}
+          onSlideChange={() => {
+            setSwipeStatus(swipeStatus === 'true'? 'false': 'true')
+            window.scrollY >= 200 && window.scrollTo(0, 200)
+          }}
         >
           <SwiperSlide>  
             <SlideNextButton swipeStatus={swipeStatus}/>
-            <div className={styles.pending}>
+            <div className={styles.pending} style={{justifyContent: pendingTodosCount === 0 && 'center'}}>
+              {!pendingTodosCount && 
+              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+                   className={`${styles.emptyListState} ${styles.pending}`}>
+                <img src='images/todoListGif.gif'/>
+                <p>No pending tasks.</p>
+              </div> }
               {filteredTodos.map((todo) => (
                 <Todo
                   key={todo.id}
@@ -270,7 +279,11 @@ function App() {
           </SwiperSlide>
           <SwiperSlide>
             <SlidePreviousButton swipeStatus={swipeStatus}/>
-            <div className={styles.completed}>
+            <div className={styles.completed} style={{justifyContent: !completedTodosCount && 'center'}}>
+            {!completedTodosCount && 
+              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}>
+                <p>No completed tasks.</p>
+              </div> }
               {completedTodos.map((todo) => (
                 <Todo
                   key={todo.id}
