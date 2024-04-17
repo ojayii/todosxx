@@ -1,5 +1,5 @@
 import styles from './Todo.module.css'
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 
 const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTodo, bgToggle, style, setHover, is_Disabled, handleDeleteTodo }) => {
     
@@ -64,4 +64,4 @@ const Todo = ({ id, text, isChecked, onTextChange, onCheckboxChange, onRemoveTod
     )
 }
 
-export default Todo;
+export default memo(Todo);

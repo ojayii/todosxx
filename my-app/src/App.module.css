@@ -99,7 +99,7 @@ header > form {
     position: relative;
     top: 0;
     top: 0rem;
-    margin-bottom: 2.6rem;
+    margin-bottom: 3.3rem;
 }
 
 header> form input:hover {
@@ -160,13 +160,15 @@ header > form button img, .App footer button img {
     align-items: center;
     /* gap: 20%; */
     /* margin-bottom: 1rem; */
-    /* position: absolute;
-    top: 0; */
+    /* position: absolute; */
+    /* bottom: -2rem; */
     position: sticky;
     top: 0;
-    z-index: 200;
+    z-index: 10;
     background-color: white;
-    padding-top: 1rem;
+    height: 1px;
+    padding-top: 1.4rem;
+    /* transform: translateY(2rem); */
 }
 
 .status>span {
@@ -178,6 +180,7 @@ header > form button img, .App footer button img {
     align-items: center;
     justify-content: center;
     gap: 5px;
+    background-color: inherit;
     border-bottom: 3px solid transparent;
     font-weight: 500;
 }
@@ -187,11 +190,11 @@ header > form button img, .App footer button img {
     align-items: center;
     justify-content: center;
     color: white;
-    width: 18px;
+    min-width: 18px;
     height: 18px;
-    border-radius: 50%;
+    border-radius: 10px;
     font-size: 11px;
-    /* line-height: 0.6; */
+    padding: 4px;
 }
 
 .App footer {
@@ -230,7 +233,7 @@ header > form button img, .App footer button img {
 
 .completed, .pending {
     min-height: 50vh;
-    margin-top: 0.2rem;
+    /* margin-top: 0.2rem; */
 }
 
 .swipeBtns {
@@ -241,6 +244,8 @@ header > form button img, .App footer button img {
     z-index: 1000;
     text-align: center;
     font-size: 1rem;
+    position: sticky;
+    top: 0;
     /* opacity: 0; */
 }
 

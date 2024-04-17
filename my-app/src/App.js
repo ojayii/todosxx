@@ -23,7 +23,6 @@ function App() {
   const [isNewUser, setIsNewUser] = useState(null);
   const [pendingTodosCount, setPendingTodosCount] = useState(0);
   const [completedTodosCount, setCompletedTodosCount] = useState(0);
-  const [swipeToggle, setSwipeToggle] = useState(true)
 
   const handleFocus = (event) => {
     setIsFocused(true);
