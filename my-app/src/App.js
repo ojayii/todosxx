@@ -259,7 +259,8 @@ function App() {
               {!pendingTodosCount && 
               <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
                    className={`${styles.emptyListState} ${styles.pending}`}>
-                <img src='images/todoListGif.gif'/>
+                <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe>
+                {/* <img src='images/todoListGif.gif'/> */}
                 <p>No pending tasks.</p>
               </div> }
               {filteredTodos.map((todo) => (

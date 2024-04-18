@@ -266,7 +266,8 @@ header > form button img, .App footer button img {
     align-items: center;
 }
 
-.emptyListState > img {
+.emptyListState > iframe {
     width: 100%;
     height: auto;
+    border: none;
 }
