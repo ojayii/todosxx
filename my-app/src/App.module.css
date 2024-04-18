@@ -264,10 +264,12 @@ header > form button img, .App footer button img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .emptyListState > iframe {
     width: 100%;
     height: auto;
     border: none;
+    transform: scale(2);
 }

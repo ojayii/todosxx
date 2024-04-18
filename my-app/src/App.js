@@ -259,8 +259,8 @@ function App() {
               {!pendingTodosCount && 
               <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
                    className={`${styles.emptyListState} ${styles.pending}`}>
-                <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe>
-                {/* <img src='images/todoListGif.gif'/> */}
+                <iframe src="https://lottie.host/embed/53ed2941-ff38-481e-aff3-fc22ab5f848a/JmQsLOwNZP.lottie"></iframe>
+                {/* <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe> */}
                 <p>No pending tasks.</p>
               </div> }
               {filteredTodos.map((todo) => (
