@@ -271,5 +271,6 @@ header > form button img, .App footer button img {
     width: 100%;
     height: auto;
     border: none;
-    transform: scale(2);
+    transform: scale(1.8);
+    pointer-events: none;
 }
