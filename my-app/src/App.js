@@ -282,7 +282,9 @@ function App() {
             <SlidePreviousButton swipeStatus={swipeStatus}/>
             <div className={styles.completed} style={{justifyContent: !completedTodosCount && 'center'}}>
             {!completedTodosCount && 
-              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}>
+              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+                   className={`${styles.emptyListState}`}>
+                <iframe src="https://lottie.host/embed/f1b77834-082d-4f14-ae5d-325b30c5a84a/EJjTBGROFz.lottie"></iframe>
                 <p>No completed tasks.</p>
               </div> }
               {completedTodos.map((todo) => (
