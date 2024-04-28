@@ -1,10 +1,14 @@
 .App {
     background-color: white;
     min-height: 100vh;
-    max-width: 40rem;
     margin: 0 auto;
     padding: 1.5rem;
     padding-bottom: 5rem;
+}
+
+.container {
+    max-width: 40rem;
+    margin: 0 auto;
 }
 
 .App header {
@@ -233,6 +237,7 @@ header > form button img, .App footer button img {
 
 .completed, .pending {
     min-height: 50vh;
+    height: 100%;
     display: flex;
     align-items: center;
     /* justify-content: center; */

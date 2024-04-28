@@ -213,118 +213,120 @@ function App() {
 
   return (
     <div className={styles.App} style={{ backgroundColor: bgToggle && 'black'}}>
+      <div className={styles.container}>
       {/* {bgToggle && <Background />} */}
-      <header>
-        <div className={styles.headerTop}>
-          <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
-          <label className={styles.switch}>
-            <input type="checkbox" onChange={handleBgToggle} checked={bgToggle && 'true'} />
-            <span className={styles.slider} />
-            <img src='images/brightness.png' className={styles.lightImg} />
-            <img src='images/dark.png' className={styles.darkImg} />
-          </label>
-        </div>
-        <form onSubmit={handleSearchSubmit} noValidate>
-          <label htmlFor="search">Search todos</label>
-          <input style={{ backgroundColor: bgToggle && '#101010', color: bgToggle && '#DEDEDE' }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
-          <button type="submit" style={{ filter: bgToggle && 'invert(1)' }}>
-            <img src="images/search.png" />
-          </button>
-          {orderBySearch && <button className={styles.exitsearch} style={{ color: bgToggle && '#DEDEDE' }} type="button" onClick={handleExitSearch}>Cancel</button>}
-        </form>
-      </header>
-      <main>
-        <p className={styles.status} 
-           style={{ color: bgToggle ? "#DEDEDE" : "#8B97A3", backgroundColor: bgToggle === true && 'black' }}>
-          <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Pending 
-            {pendingTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'true'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{pendingTodosCount}</span>} 
-          </span>
-          <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Completed 
-            {completedTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'false'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{completedTodosCount}</span>}
-          </span>
-        </p>
-        <Swiper
-          // modules={[Scrollbar]}
-          // scrollbar={{ draggable: true }}
-          spaceBetween={10}
-          slidesPerView={1}
-          onSlideChange={() => {
-            setSwipeStatus(swipeStatus === 'true'? 'false': 'true')
-            window.scrollY >= 200 && window.scrollTo(0, 200)
-          }}
-        >
-          <SwiperSlide>  
-            <SlideNextButton swipeStatus={swipeStatus}/>
-            <div className={styles.pending} style={{justifyContent: pendingTodosCount === 0 && 'center'}}>
-              {!pendingTodosCount && 
-              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
-                   className={`${styles.emptyListState} ${styles.pending}`}>
-                <iframe src="https://lottie.host/embed/53ed2941-ff38-481e-aff3-fc22ab5f848a/JmQsLOwNZP.lottie"></iframe>
-                {/* <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe> */}
-                <p>No pending tasks.</p>
-              </div> }
-              {filteredTodos.map((todo) => (
-                <Todo
-                  key={todo.id}
-                  id={todo.id}
-                  text={todo.text}
-                  isChecked={todo.isChecked || false}
-                  onTextChange={handleTodoTextChange}
-                  onCheckboxChange={handleCheckboxChange}
-                  onRemoveTodo={handleRemoveTodo}
-                  bgToggle={bgToggle}
-                  style={{ color: bgToggle && '#DEDEDE' }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlidePreviousButton swipeStatus={swipeStatus}/>
-            <div className={styles.completed} style={{justifyContent: !completedTodosCount && 'center'}}>
-            {!completedTodosCount && 
-              <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
-                   className={`${styles.emptyListState}`}>
-                <iframe src="https://lottie.host/embed/f1b77834-082d-4f14-ae5d-325b30c5a84a/EJjTBGROFz.lottie"></iframe>
-                <p>No completed tasks.</p>
-              </div> }
-              {completedTodos.map((todo) => (
-                <Todo
-                  key={todo.id}
-                  id={todo.id}
-                  text={todo.text}
-                  isChecked={todo.isChecked || false}
-                  onTextChange={handleCompletedTodoTextChange}
-                  onCheckboxChange={handleCheckboxUnchange}
-                  onRemoveTodo={handleUnRemoveTodo}
-                  bgToggle={bgToggle}
-                  setHover={true}
-                  // is_Disabled={true}
-                  style={{ textDecoration: 'line-through', color: bgToggle && '#DEDEDE' }}
-                  handleDeleteTodo={handleDeleteTodo}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-        </Swiper>
+        <header>
+          <div className={styles.headerTop}>
+            <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
+            <label title="Light/dark theme toggle" className={styles.switch}>
+              <input type="checkbox" onChange={handleBgToggle} checked={bgToggle && 'true'} />
+              <span className={styles.slider} />
+              <img src='images/brightness.png' className={styles.lightImg} />
+              <img src='images/dark.png' className={styles.darkImg} />
+            </label>
+          </div>
+          <form onSubmit={handleSearchSubmit} noValidate>
+            <label htmlFor="search">Search todos</label>
+            <input style={{ backgroundColor: bgToggle && '#101010', color: bgToggle && '#DEDEDE' }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
+            <button title={swipeStatus? 'Search completed todos': 'Search pending todos'} type="submit" style={{ filter: bgToggle && 'invert(1)' }}>
+              <img src="images/search.png" />
+            </button>
+            {orderBySearch && <button className={styles.exitsearch} style={{ color: bgToggle && '#DEDEDE' }} type="button" onClick={handleExitSearch}>Cancel</button>}
+          </form>
+        </header>
+        <main>
+          <p className={styles.status} 
+            style={{ color: bgToggle ? "#DEDEDE" : "#8B97A3", backgroundColor: bgToggle === true && 'black' }}>
+            <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Pending 
+              {pendingTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'true'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{pendingTodosCount}</span>} 
+            </span>
+            <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Completed 
+              {completedTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'false'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{completedTodosCount}</span>}
+            </span>
+          </p>
+          <Swiper
+            // modules={[Scrollbar]}
+            // scrollbar={{ draggable: true }}
+            spaceBetween={10}
+            slidesPerView={1}
+            onSlideChange={() => {
+              setSwipeStatus(swipeStatus === 'true'? 'false': 'true')
+              window.scrollY >= 200 && window.scrollTo(0, 200)
+            }}
+          >
+            <SwiperSlide>  
+              <SlideNextButton swipeStatus={swipeStatus}/>
+              <div className={styles.pending} style={{justifyContent: pendingTodosCount === 0 && 'center'}}>
+                {!pendingTodosCount && 
+                <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+                    className={`${styles.emptyListState} ${styles.pending}`}>
+                  <iframe src="https://lottie.host/embed/53ed2941-ff38-481e-aff3-fc22ab5f848a/JmQsLOwNZP.lottie"></iframe>
+                  {/* <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe> */}
+                  <p>No pending tasks.</p>
+                </div> }
+                {filteredTodos.map((todo) => (
+                  <Todo
+                    key={todo.id}
+                    id={todo.id}
+                    text={todo.text}
+                    isChecked={todo.isChecked || false}
+                    onTextChange={handleTodoTextChange}
+                    onCheckboxChange={handleCheckboxChange}
+                    onRemoveTodo={handleRemoveTodo}
+                    bgToggle={bgToggle}
+                    style={{ color: bgToggle && '#DEDEDE' }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <SlidePreviousButton swipeStatus={swipeStatus}/>
+              <div className={styles.completed} style={{justifyContent: !completedTodosCount && 'center'}}>
+              {!completedTodosCount && 
+                <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+                    className={`${styles.emptyListState}`}>
+                  <iframe src="https://lottie.host/embed/f1b77834-082d-4f14-ae5d-325b30c5a84a/EJjTBGROFz.lottie"></iframe>
+                  <p>No completed tasks.</p>
+                </div> }
+                {completedTodos.map((todo) => (
+                  <Todo
+                    key={todo.id}
+                    id={todo.id}
+                    text={todo.text}
+                    isChecked={todo.isChecked || false}
+                    onTextChange={handleCompletedTodoTextChange}
+                    onCheckboxChange={handleCheckboxUnchange}
+                    onRemoveTodo={handleUnRemoveTodo}
+                    bgToggle={bgToggle}
+                    setHover={true}
+                    // is_Disabled={true}
+                    style={{ textDecoration: 'line-through', color: bgToggle && '#DEDEDE' }}
+                    handleDeleteTodo={handleDeleteTodo}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+          </Swiper>
 
-      </main>
-      <footer style={{ backgroundColor: bgToggle && '#0D0D0D', boxShadow: bgToggle && 'none' }}>
-        <textarea
-          ref={textareaRef}
-          placeholder="Add todo..."
-          value={newTodoText}
-          onChange={handleNewTodoTextChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          style={{
-            transition: "height 0.3s ease-in-out",
-            color: bgToggle && '#DEDEDE'
-          }}
-        />
-        <button onClick={handleAddTodo} style={{ filter: bgToggle && 'invert(1)' }}>
-          <img src="images/plus.png" />
-        </button>
-      </footer>
+        </main>
+        <footer style={{ backgroundColor: bgToggle && '#0D0D0D', boxShadow: bgToggle && 'none' }}>
+          <textarea
+            ref={textareaRef}
+            placeholder="Add todo..."
+            value={newTodoText}
+            onChange={handleNewTodoTextChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            style={{
+              transition: "height 0.3s ease-in-out",
+              color: bgToggle && '#DEDEDE'
+            }}
+          />
+          <button onClick={handleAddTodo} style={{ filter: bgToggle && 'invert(1)' }}>
+            <img src="images/plus.png" />
+          </button>
+        </footer>
+      </div>
     </div>
   );
 }
