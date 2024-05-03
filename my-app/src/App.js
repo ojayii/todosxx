@@ -1,25 +1,24 @@
-import styles from './App.module.css';
-import Todo from './Todo';
-import React, { useState, useEffect, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from "./App.module.css";
+import Todo from "./Todo";
+import React, { useState, useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 // import { Scrollbar } from 'swiper/modules';
-import 'swiper/css';
+import "swiper/css";
 // import 'swiper/css/scrollbar';
-import SlideNextButton from './SlideNextButton';
-import SlidePreviousButton from './SlidePreviousButton';
+import SlideNextButton from "./SlideNextButton";
+import SlidePreviousButton from "./SlidePreviousButton";
 
 function App() {
-
   const textareaRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [bgToggle, setBgToggle] = useState(null);
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
-  const [newTodoText, setNewTodoText] = useState('');
-  const [searchValue, setSearchValue] = useState('');
+  const [newTodoText, setNewTodoText] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [orderBySearch, setOrderBySearch] = useState(false);
-  const [swipeStatus, setSwipeStatus] = useState('true');
+  const [swipeStatus, setSwipeStatus] = useState("true");
   const [isNewUser, setIsNewUser] = useState(null);
   const [pendingTodosCount, setPendingTodosCount] = useState(0);
   const [completedTodosCount, setCompletedTodosCount] = useState(0);
@@ -38,24 +37,25 @@ function App() {
   };
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
     setTodos(storedTodos);
-    const storedCompletedTodos = JSON.parse(localStorage.getItem('completedTodos')) || [];
+    const storedCompletedTodos =
+      JSON.parse(localStorage.getItem("completedTodos")) || [];
     setCompletedTodos(storedCompletedTodos);
     setFilteredTodos(storedTodos);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-    localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("completedTodos", JSON.stringify(completedTodos));
     applySearchFilter();
   }, [todos, searchValue, completedTodos]);
 
   const handleAddTodo = () => {
-    if (newTodoText.trim() !== '') {
+    if (newTodoText.trim() !== "") {
       const newTodo = { id: Date.now(), text: newTodoText };
       setTodos([newTodo, ...todos]);
-      setNewTodoText('');
+      setNewTodoText("");
     }
   };
 
@@ -69,13 +69,17 @@ function App() {
 
   const handleTodoTextChange = (id, newText) => {
     setTodos((prevTodos) =>
-      prevTodos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
     );
   };
 
   const handleCompletedTodoTextChange = (id, newText) => {
     setCompletedTodos((prevTodos) =>
-      prevTodos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
     );
   };
 
@@ -89,12 +93,14 @@ function App() {
   };
 
   const handleExitSearch = () => {
-    setSearchValue('');
+    setSearchValue("");
     setOrderBySearch(false);
   };
 
   const applySearchFilter = () => {
-    const filtered = todos.filter((todo) => todo.text.toLowerCase().includes(searchValue.toLowerCase()));
+    const filtered = todos.filter((todo) =>
+      todo.text.toLowerCase().includes(searchValue.toLowerCase())
+    );
     setFilteredTodos(filtered);
   };
 
@@ -112,7 +118,6 @@ function App() {
     setCompletedTodos(updatedCompletedTodos);
   };
 
-
   const handleRemoveTodo = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
@@ -121,8 +126,10 @@ function App() {
   };
 
   const handleUnRemoveTodo = (id) => {
-    const updatedCompletedTodos = completedTodos.filter((todo) => todo.id !== id);
-    setCompletedTodos(updatedCompletedTodos)
+    const updatedCompletedTodos = completedTodos.filter(
+      (todo) => todo.id !== id
+    );
+    setCompletedTodos(updatedCompletedTodos);
     const updatedTodos = completedTodos.filter((todo) => todo.id == id);
     setTodos([...updatedTodos, ...todos]);
   };
@@ -143,10 +150,12 @@ function App() {
   }, [completedTodos]);
 
   const handleDeleteTodo = (e) => {
-    if (window.confirm('Permantly delete todo item?')) {
-      const updatedCompletedTodos = completedTodos.filter((todo) => todo.id != e.target.parentElement.id);
-      setCompletedTodos(updatedCompletedTodos)
-    } 
+    if (window.confirm("Permantly delete todo item?")) {
+      const updatedCompletedTodos = completedTodos.filter(
+        (todo) => todo.id != e.target.parentElement.id
+      );
+      setCompletedTodos(updatedCompletedTodos);
+    }
   };
 
   useEffect(() => {
@@ -165,83 +174,168 @@ function App() {
   }, [todos]);
 
   useEffect(() => {
-    const isDarkModePreferred = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const isDarkModePreferred = window.matchMedia(
+      "(prefers-color-scheme: light)"
+    ).matches;
     setBgToggle(isDarkModePreferred);
     // console.log(isDarkModePreferred)
   }, []);
 
   useEffect(() => {
     if (bgToggle !== null) {
-      localStorage.setItem('bgToggle', JSON.stringify(bgToggle));
-      console.log(bgToggle)
+      localStorage.setItem("bgToggle", JSON.stringify(bgToggle));
+      console.log(bgToggle);
     }
   }, [bgToggle]);
 
   useEffect(() => {
-    const storedBgToggle = JSON.parse(localStorage.getItem('bgToggle'));
+    const storedBgToggle = JSON.parse(localStorage.getItem("bgToggle"));
     setBgToggle(storedBgToggle);
   }, []);
 
   const handleBgToggle = (e) => {
     setBgToggle((prevBgToggle) => !prevBgToggle);
-  }
+  };
 
   useEffect(() => {
-    const isNewUser = !JSON.parse(localStorage.getItem('isNewUser')) || false;
+    const isNewUser = !JSON.parse(localStorage.getItem("isNewUser")) || false;
     if (isNewUser) {
-      localStorage.setItem('isNewUser', JSON.stringify(true));
-      const todoOne = { id: Date.now(), text: 'Welcome to ToDos' };
+      localStorage.setItem("isNewUser", JSON.stringify(true));
+      const todoOne = { id: Date.now(), text: "Welcome to ToDos" };
       // const todoTwo = { id: Date.now() + 1, text: newTodoText };
       setTodos([todoOne, ...todos]);
     }
     setIsNewUser(isNewUser);
-  }, [])
+  }, []);
 
   useEffect(() => {
-    setPendingTodosCount(0)
+    setPendingTodosCount(0);
     todos.forEach(() => {
-      setPendingTodosCount(count => count + 1)
-    })
-  }, [todos])
+      setPendingTodosCount((count) => count + 1);
+    });
+  }, [todos]);
 
   useEffect(() => {
-    setCompletedTodosCount(0)
+    setCompletedTodosCount(0);
     completedTodos.forEach(() => {
-      setCompletedTodosCount(count => count + 1)
-    })
-  }, [completedTodos])
+      setCompletedTodosCount((count) => count + 1);
+    });
+  }, [completedTodos]);
 
   return (
-    <div className={styles.App} style={{ backgroundColor: bgToggle && 'black'}}>
+    <div
+      className={styles.App}
+      style={{ backgroundColor: bgToggle && "black" }}>
       <div className={styles.container}>
-      {/* {bgToggle && <Background />} */}
+        {/* {bgToggle && <Background />} */}
         <header>
           <div className={styles.headerTop}>
             <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
-            <label title="Light/dark theme toggle" className={styles.switch}>
-              <input type="checkbox" onChange={handleBgToggle} checked={bgToggle && 'true'} />
+            <label
+              title='Light/dark theme toggle'
+              className={styles.switch}>
+              <input
+                type='checkbox'
+                onChange={handleBgToggle}
+                checked={bgToggle && "true"}
+              />
               <span className={styles.slider} />
-              <img src='images/brightness.png' className={styles.lightImg} />
-              <img src='images/dark.png' className={styles.darkImg} />
+              <img
+                src='images/brightness.png'
+                className={styles.lightImg}
+              />
+              <img
+                src='images/dark.png'
+                className={styles.darkImg}
+              />
             </label>
           </div>
-          <form onSubmit={handleSearchSubmit} noValidate>
-            <label htmlFor="search">Search todos</label>
-            <input style={{ backgroundColor: bgToggle && '#101010', color: bgToggle && '#DEDEDE' }} id="search" type="text" placeholder="Search ToDos" value={searchValue} onChange={handleSearchChange} />
-            <button title={swipeStatus? 'Search completed todos': 'Search pending todos'} type="submit" style={{ filter: bgToggle && 'invert(1)' }}>
-              <img src="images/search.png" />
+          <form
+            onSubmit={handleSearchSubmit}
+            noValidate>
+            <label htmlFor='search'>Search todos</label>
+            <input
+              style={{
+                backgroundColor: bgToggle && "#101010",
+                color: bgToggle && "#DEDEDE",
+              }}
+              id='search'
+              type='text'
+              placeholder='Search ToDos'
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
+            <button
+              title={
+                swipeStatus ? "Search completed todos" : "Search pending todos"
+              }
+              type='submit'
+              style={{ filter: bgToggle && "invert(1)" }}>
+              <img src='images/search.png' />
             </button>
-            {orderBySearch && <button className={styles.exitsearch} style={{ color: bgToggle && '#DEDEDE' }} type="button" onClick={handleExitSearch}>Cancel</button>}
+            {orderBySearch && (
+              <button
+                className={styles.exitsearch}
+                style={{ color: bgToggle && "#DEDEDE" }}
+                type='button'
+                onClick={handleExitSearch}>
+                Cancel
+              </button>
+            )}
           </form>
         </header>
         <main>
-          <p className={styles.status} 
-            style={{ color: bgToggle ? "#DEDEDE" : "#8B97A3", backgroundColor: bgToggle === true && 'black' }}>
-            <span style={{color: swipeStatus === 'true' && '#2196F3', borderBottom: swipeStatus === 'true' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Pending 
-              {pendingTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'true'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{pendingTodosCount}</span>} 
+          <p
+            className={styles.status}
+            style={{
+              color: bgToggle ? "#DEDEDE" : "#8B97A3",
+              backgroundColor: bgToggle === true && "black",
+            }}>
+            <span
+              style={{
+                color: swipeStatus === "true" && "#2196F3",
+                borderBottom: swipeStatus === "true" && "3px solid #2196F3",
+                backgroundColor: bgToggle === true && "black",
+              }}>
+              Pending
+              {pendingTodosCount !== 0 && (
+                <span
+                  style={{
+                    backgroundColor:
+                      swipeStatus === "true"
+                        ? "#2196F3"
+                        : bgToggle
+                        ? "#DEDEDE"
+                        : "#8B97A3",
+                    color: bgToggle && "black",
+                  }}
+                  className={styles.todoCount}>
+                  {pendingTodosCount}
+                </span>
+              )}
             </span>
-            <span style={{color: swipeStatus === 'false' && '#2196F3', borderBottom: swipeStatus === 'false' && '3px solid #2196F3', backgroundColor: bgToggle === true && 'black'}}>Completed 
-              {completedTodosCount !== 0 && <span style={{backgroundColor: swipeStatus === 'false'? '#2196F3': bgToggle? '#DEDEDE': '#8B97A3', color: bgToggle && 'black'}} className={styles.todoCount}>{completedTodosCount}</span>}
+            <span
+              style={{
+                color: swipeStatus === "false" && "#2196F3",
+                borderBottom: swipeStatus === "false" && "3px solid #2196F3",
+                backgroundColor: bgToggle === true && "black",
+              }}>
+              Completed
+              {completedTodosCount !== 0 && (
+                <span
+                  style={{
+                    backgroundColor:
+                      swipeStatus === "false"
+                        ? "#2196F3"
+                        : bgToggle
+                        ? "#DEDEDE"
+                        : "#8B97A3",
+                    color: bgToggle && "black",
+                  }}
+                  className={styles.todoCount}>
+                  {completedTodosCount}
+                </span>
+              )}
             </span>
           </p>
           <Swiper
@@ -250,20 +344,23 @@ function App() {
             spaceBetween={10}
             slidesPerView={1}
             onSlideChange={() => {
-              setSwipeStatus(swipeStatus === 'true'? 'false': 'true')
-              window.scrollY >= 200 && window.scrollTo(0, 200)
-            }}
-          >
-            <SwiperSlide>  
-              <SlideNextButton swipeStatus={swipeStatus}/>
-              <div className={styles.pending} style={{justifyContent: pendingTodosCount === 0 && 'center'}}>
-                {!pendingTodosCount && 
-                <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+              setSwipeStatus(swipeStatus === "true" ? "false" : "true");
+              window.scrollY >= 200 && window.scrollTo(0, 200);
+            }}>
+            <SwiperSlide>
+              <SlideNextButton swipeStatus={swipeStatus} />
+              <div
+                className={styles.pending}
+                style={{ justifyContent: pendingTodosCount === 0 && "center" }}>
+                {!pendingTodosCount && (
+                  <div
+                    style={{ color: bgToggle ? "#DEDEDE" : "black" }}
                     className={`${styles.emptyListState} ${styles.pending}`}>
-                  <iframe src="https://lottie.host/embed/53ed2941-ff38-481e-aff3-fc22ab5f848a/JmQsLOwNZP.lottie"></iframe>
-                  {/* <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe> */}
-                  <p>No pending tasks.</p>
-                </div> }
+                    <iframe src='https://lottie.host/embed/53ed2941-ff38-481e-aff3-fc22ab5f848a/JmQsLOwNZP.lottie'></iframe>
+                    {/* <iframe src="https://lottie.host/embed/c7e5fb23-5708-471b-a87e-bf1049fec8bf/V87j4oouct.json"></iframe> */}
+                    <p>No pending tasks.</p>
+                  </div>
+                )}
                 {filteredTodos.map((todo) => (
                   <Todo
                     key={todo.id}
@@ -274,20 +371,24 @@ function App() {
                     onCheckboxChange={handleCheckboxChange}
                     onRemoveTodo={handleRemoveTodo}
                     bgToggle={bgToggle}
-                    style={{ color: bgToggle && '#DEDEDE' }}
+                    style={{ color: bgToggle && "#DEDEDE" }}
                   />
                 ))}
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <SlidePreviousButton swipeStatus={swipeStatus}/>
-              <div className={styles.completed} style={{justifyContent: !completedTodosCount && 'center'}}>
-              {!completedTodosCount && 
-                <div style={{ color: bgToggle ? "#DEDEDE" : "black" }}
+              <SlidePreviousButton swipeStatus={swipeStatus} />
+              <div
+                className={styles.completed}
+                style={{ justifyContent: !completedTodosCount && "center" }}>
+                {!completedTodosCount && (
+                  <div
+                    style={{ color: bgToggle ? "#DEDEDE" : "black" }}
                     className={`${styles.emptyListState}`}>
-                  <iframe src="https://lottie.host/embed/f1b77834-082d-4f14-ae5d-325b30c5a84a/EJjTBGROFz.lottie"></iframe>
-                  <p>No completed tasks.</p>
-                </div> }
+                    <iframe src='https://lottie.host/embed/f1b77834-082d-4f14-ae5d-325b30c5a84a/EJjTBGROFz.lottie'></iframe>
+                    <p>No completed tasks.</p>
+                  </div>
+                )}
                 {completedTodos.map((todo) => (
                   <Todo
                     key={todo.id}
@@ -300,30 +401,38 @@ function App() {
                     bgToggle={bgToggle}
                     setHover={true}
                     // is_Disabled={true}
-                    style={{ textDecoration: 'line-through', color: bgToggle && '#DEDEDE' }}
+                    style={{
+                      textDecoration: "line-through",
+                      color: bgToggle && "#DEDEDE",
+                    }}
                     handleDeleteTodo={handleDeleteTodo}
                   />
                 ))}
               </div>
             </SwiperSlide>
           </Swiper>
-
         </main>
-        <footer style={{ backgroundColor: bgToggle && '#0D0D0D', boxShadow: bgToggle && 'none' }}>
+        <footer
+          style={{
+            backgroundColor: bgToggle && "#0D0D0D",
+            boxShadow: bgToggle && "none",
+          }}>
           <textarea
             ref={textareaRef}
-            placeholder="Add todo..."
+            placeholder='Add todo...'
             value={newTodoText}
             onChange={handleNewTodoTextChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             style={{
               transition: "height 0.3s ease-in-out",
-              color: bgToggle && '#DEDEDE'
+              color: bgToggle && "#DEDEDE",
             }}
           />
-          <button onClick={handleAddTodo} style={{ filter: bgToggle && 'invert(1)' }}>
-            <img src="images/plus.png" />
+          <button
+            onClick={handleAddTodo}
+            style={{ filter: bgToggle && "invert(1)" }}>
+            <img src='images/plus.png' />
           </button>
         </footer>
       </div>
