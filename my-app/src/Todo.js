@@ -58,6 +58,7 @@ const Todo = ({
         type='checkbox'
         checked={isChecked}
         onChange={handleCheckboxChange}
+        title={isChecked? 'Mark item as pending': 'Mark item as completed'}
       />
       <textarea
         ref={textareaRef}
@@ -79,7 +80,8 @@ const Todo = ({
       {handleDeleteTodo && (
         <button
           className={styles.deleteTodo}
-          onClick={handleDeleteTodo}></button>
+          onClick={handleDeleteTodo}
+          title="Permantly delete completed todo item"/>
       )}
     </div>
   );
