@@ -17,7 +17,6 @@ function App() {
   const [newTodoText, setNewTodoText] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [filteredCompletedTodos, setFilteredCompletedTodos] = useState([]);
   const [orderBySearch, setOrderBySearch] = useState(false);
   const [swipeStatus, setSwipeStatus] = useState("true");
   const [isNewUser, setIsNewUser] = useState(null);
@@ -44,7 +43,6 @@ function App() {
       JSON.parse(localStorage.getItem("completedTodos")) || [];
     setCompletedTodos(storedCompletedTodos);
     setFilteredTodos(storedTodos);
-    setFilteredCompletedTodos(storedCompletedTodos);
   }, []);
 
   useEffect(() => {
@@ -100,19 +98,10 @@ function App() {
   };
 
   const applySearchFilter = () => {
-    if (swipeStatus === 'true') {
-      const filtered = todos.filter((todo) =>
-        todo.text.toLowerCase().includes(searchValue.toLowerCase())
-      );
-      setFilteredTodos(filtered);
-      
-    }else {
-      const filtered = completedTodos.filter((todo) =>
-        todo.text.toLowerCase().includes(searchValue.toLowerCase())
-      );
-      setFilteredCompletedTodos(filtered);
-      // setCompletedTodos(filtered);
-    }
+    const filtered = todos.filter((todo) =>
+      todo.text.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredTodos(filtered);
   };
 
   const handleCheckboxChange = (id) => {
@@ -272,19 +261,13 @@ function App() {
               }}
               id='search'
               type='text'
-              placeholder={
-                swipeStatus === "true"
-                  ? "Search ToDos"
-                  : "Search Completed ToDos"
-              }
+              placeholder='Search ToDos'
               value={searchValue}
               onChange={handleSearchChange}
             />
             <button
               title={
-                swipeStatus === "true"
-                  ? "Search ToDos"
-                  : "Search Completed ToDos"
+                swipeStatus ? "Search completed todos" : "Search pending todos"
               }
               type='submit'
               style={{ filter: bgToggle && "invert(1)" }}>
@@ -406,7 +389,7 @@ function App() {
                     <p>No completed tasks.</p>
                   </div>
                 )}
-                {filteredCompletedTodos.map((todo) => (
+                {completedTodos.map((todo) => (
                   <Todo
                     key={todo.id}
                     id={todo.id}
@@ -448,8 +431,7 @@ function App() {
           />
           <button
             onClick={handleAddTodo}
-            style={{ filter: bgToggle && "invert(1)" }}
-            title='Add new todo item'>
+            style={{ filter: bgToggle && "invert(1)" }}>
             <img src='images/plus.png' />
           </button>
         </footer>
