@@ -11,7 +11,7 @@ import SlidePreviousButton from "./SlidePreviousButton";
 function App() {
   const textareaRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [bgToggle, setBgToggle] = useState(null);
+  const [bgToggle, setBgToggle] = useState(localStorage.getItem("bgToggle") || null);
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
   const [newTodoText, setNewTodoText] = useState("");
