@@ -17,7 +17,7 @@ body {
   box-sizing: border-box;
   line-height: 1.2;
   outline-color: black;
-  transition: color 150ms ease-in-out;
+  transition: invert 150ms ease-in-out;
   transition: background-color 150ms ease-in-out;
 }
 
