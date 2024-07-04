@@ -9,12 +9,12 @@
     },
     {
       "src": "todo_logo.ico",
-      "type": "image/png",
+      "type": "image/x-icon",
       "sizes": "192x192"
     },
     {
       "src": "todo_logo.ico",
-      "type": "image/png",
+      "type": "image/x-icon",
       "sizes": "512x512"
     }
   ],

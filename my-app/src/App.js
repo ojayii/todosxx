@@ -201,7 +201,7 @@ function App() {
     const isNewUser = !JSON.parse(localStorage.getItem("isNewUser")) || false;
     if (isNewUser) {
       localStorage.setItem("isNewUser", JSON.stringify(true));
-      const todoOne = { id: Date.now(), text: "Welcome to ToDos" };
+      const todoOne = { id: Date.now(), text: "Welcome to ToDos++" };
       // const todoTwo = { id: Date.now() + 1, text: newTodoText };
       setTodos([todoOne, ...todos]);
     }
@@ -230,7 +230,7 @@ function App() {
         {/* {bgToggle && <Background />} */}
         <header>
           <div className={styles.headerTop}>
-            <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos</h1>
+            <h1 style={{ color: bgToggle ? "#DEDEDE" : "black" }}>ToDos++</h1>
             <label
               title='Light/dark theme toggle'
               className={styles.switch}>
