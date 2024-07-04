@@ -1,6 +1,6 @@
 {
-  "short_name": "Todos",
-  "name": "Welcome to Todos",
+  "short_name": "Todos++",
+  "name": "Welcome to Todos++",
   "icons": [
     {
       "src": "todo_logo.ico",
@@ -9,12 +9,12 @@
     },
     {
       "src": "todo_logo.ico",
-      "type": "image/x-icon",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
       "src": "todo_logo.ico",
-      "type": "image/x-icon",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
