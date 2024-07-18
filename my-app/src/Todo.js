@@ -13,10 +13,12 @@ const Todo = ({
   setHover,
   is_Disabled,
   handleDeleteTodo,
+  dateELText,
 }) => {
   const textareaRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(text);
+  const [dateEL, setDateEl] = useState(dateELText);
 
   const handleFocus = (event) => {
     setIsFocused(true);
@@ -24,18 +26,21 @@ const Todo = ({
     if (textareaRef.current) {
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
+    event.target.parentElement.style.outline= '2px solid #2196F3';
   };
 
   const handleBlur = (event) => {
     setIsFocused(false);
-    onTextChange && onTextChange(id, inputValue);
+    onTextChange && onTextChange(id, inputValue, dateEL);
     event.target.style.minHeight = "";
     event.target.style.height = "";
+    event.target.parentElement.style.outline= '';
   };
 
   const handleTextChange = (event) => {
     setInputValue(event.target.value);
     event.target.style.height = `${event.target.scrollHeight}px`;
+    setDateEl(Date());
   };
 
   const handleCheckboxChange = () => {
@@ -53,6 +58,7 @@ const Todo = ({
         backgroundColor: bgToggle && "#101010",
         color: bgToggle && "#DEDEDE",
       }}
+      // onClick={(e) => e.target.secondChild.focused = true}
       id={`${id}`}>
       <input
         type='checkbox'
@@ -83,6 +89,7 @@ const Todo = ({
           onClick={handleDeleteTodo}
           title="Permantly delete completed todo item"/>
       )}
+      <span className={styles.dateEl}>{dateELText.slice(0, 24)}</span>
     </div>
   );
 };

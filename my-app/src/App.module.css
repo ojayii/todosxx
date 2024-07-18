@@ -20,7 +20,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 400;
     color: white;
 }
@@ -228,6 +228,7 @@ header > form button img, .App footer button img {
     transition: height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
+    scrollbar-width: none;
 }
 
 .App footer button {
@@ -237,12 +238,16 @@ header > form button img, .App footer button img {
 
 .completed, .pending {
     min-height: 50vh;
+    max-height: 80vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
     height: 100%;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
     /* margin-top: 0.2rem; */
+    padding-top: 2px;
 }
 
 .swipeBtns {

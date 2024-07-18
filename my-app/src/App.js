@@ -53,7 +53,7 @@ function App() {
 
   const handleAddTodo = () => {
     if (newTodoText.trim() !== "") {
-      const newTodo = { id: Date.now(), text: newTodoText };
+      const newTodo = { id: Date(), text: newTodoText };
       setTodos([newTodo, ...todos]);
       setNewTodoText("");
     }
@@ -67,18 +67,18 @@ function App() {
     }
   };
 
-  const handleTodoTextChange = (id, newText) => {
+  const handleTodoTextChange = (id, newText, newDate) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo
+        todo.id === id ? { ...todo, text: newText, id: newDate } : todo
       )
     );
   };
 
-  const handleCompletedTodoTextChange = (id, newText) => {
+  const handleCompletedTodoTextChange = (id, newText, newDate) => {
     setCompletedTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo
+        todo.id === id ? { ...todo, text: newText, id: newDate } : todo
       )
     );
   };
@@ -346,6 +346,7 @@ function App() {
             onSlideChange={() => {
               setSwipeStatus(swipeStatus === "true" ? "false" : "true");
               window.scrollY >= 200 && window.scrollTo(0, 200);
+              // setTimeout(() => window.scrollY >= 200 && window.scrollTo(0, 200), 500)
             }}>
             <SwiperSlide>
               <SlideNextButton swipeStatus={swipeStatus} />
@@ -366,6 +367,7 @@ function App() {
                     key={todo.id}
                     id={todo.id}
                     text={todo.text}
+                    dateELText={todo.id}
                     isChecked={todo.isChecked || false}
                     onTextChange={handleTodoTextChange}
                     onCheckboxChange={handleCheckboxChange}
@@ -394,6 +396,7 @@ function App() {
                     key={todo.id}
                     id={todo.id}
                     text={todo.text}
+                    dateELText={todo.id}
                     isChecked={todo.isChecked || false}
                     onTextChange={handleCompletedTodoTextChange}
                     onCheckboxChange={handleCheckboxUnchange}

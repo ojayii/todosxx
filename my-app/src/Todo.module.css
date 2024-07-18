@@ -1,5 +1,5 @@
 .todoBox {
-    width: 100%;
+    width: 97%;
     position: relative;
     margin-bottom: 1rem;
     border-radius: 0.9rem;
@@ -21,6 +21,7 @@
     width: 90%;
     padding: 0;
     border: none;
+    outline: none;
     background-color: transparent;
     font-size: 1.2rem;
     height: 1.25rem;
@@ -29,6 +30,7 @@
     transition: height 0.3s ease-in-out;
     white-space: wrap;
     resize: none;
+    scrollbar-width: none;
 }
 
 .todoBox>input[type="checkbox"] {
@@ -46,4 +48,11 @@
     border: none;
     width: 0.8rem;
     height: 0.8rem;
+}
+
+.dateEl {
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1rem;
 }
