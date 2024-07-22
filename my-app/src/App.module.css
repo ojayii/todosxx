@@ -180,12 +180,13 @@ header > form button img, .App footer button img {
     width: 50%;
     text-align: center;
     border-radius: 3px;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom 0.4s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
     background-color: white;
-    border-bottom: 3px solid transparent;
     font-weight: 500;
 }
 

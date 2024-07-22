@@ -364,8 +364,7 @@ function App() {
               <SlideNextButton swipeStatus={swipeStatus} />
               <div
                 className={styles.pending}
-                style={{ justifyContent: pendingTodosCount === 0 && "center" }}
-                onWheel={handleScroll}>
+                style={{ justifyContent: pendingTodosCount === 0 && "center" }}>
                 {!pendingTodosCount && (
                   <div
                     style={{ color: bgToggle ? "#DEDEDE" : "black" }}
@@ -395,8 +394,7 @@ function App() {
               <SlidePreviousButton swipeStatus={swipeStatus} />
               <div
                 className={styles.completed}
-                style={{ justifyContent: !completedTodosCount && "center" }}
-                onWheel={handleScroll}>
+                style={{ justifyContent: !completedTodosCount && "center" }}>
                 {!completedTodosCount && (
                   <div
                     style={{ color: bgToggle ? "#DEDEDE" : "black" }}
