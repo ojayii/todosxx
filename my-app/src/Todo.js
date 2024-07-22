@@ -20,13 +20,13 @@ const Todo = ({
   const [inputValue, setInputValue] = useState(text);
   const [dateEL, setDateEl] = useState(dateELText);
 
-  const handleFocus = (event) => {
+  const handleFocus = (e) => {
     setIsFocused(true);
-    event.target.style.height = `${textareaRef.current.scrollHeight}px`;
+    e.target.style.height = `${textareaRef.current.scrollHeight}px`;
     if (textareaRef.current) {
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
-    event.target.parentElement.style.outline= '2px solid #2196F3';
+    e.target.parentElement.style.borderColor= '#2196F3';
   };
 
   const handleBlur = (event) => {
@@ -34,7 +34,7 @@ const Todo = ({
     onTextChange && onTextChange(id, inputValue, dateEL);
     event.target.style.minHeight = "";
     event.target.style.height = "";
-    event.target.parentElement.style.outline= '';
+    event.target.parentElement.style.borderColor= '';
   };
 
   const handleTextChange = (event) => {
@@ -89,7 +89,7 @@ const Todo = ({
           onClick={handleDeleteTodo}
           title="Permantly delete completed todo item"/>
       )}
-      <span className={styles.dateEl}>{dateELText.slice(0, 24)}</span>
+      <span className={styles.dateEl}>{dateELText.toString().slice(0, 24)}</span>
     </div>
   );
 };

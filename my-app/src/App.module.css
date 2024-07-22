@@ -211,6 +211,7 @@ header > form button img, .App footer button img {
     background-color: #f5f5f5;
     box-shadow: 1px 1.9rem 6rem rgb(71, 71, 71);
     z-index: 300;
+    border: 2px solid transparent;
 }
 
 @media (min-width: 64rem) {
@@ -229,6 +230,7 @@ header > form button img, .App footer button img {
     white-space: wrap;
     resize: none;
     scrollbar-width: none;
+    outline: none;
 }
 
 .App footer button {
@@ -237,11 +239,9 @@ header > form button img, .App footer button img {
 }
 
 .completed, .pending {
-    min-height: 50vh;
-    max-height: 80vh;
+    height: 80vh;
     overflow-y: scroll;
     scrollbar-width: none;
-    height: 100%;
     display: flex;
     align-items: center;
     /* justify-content: center; */

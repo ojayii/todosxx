@@ -23,17 +23,19 @@ function App() {
   const [pendingTodosCount, setPendingTodosCount] = useState(0);
   const [completedTodosCount, setCompletedTodosCount] = useState(0);
 
-  const handleFocus = (event) => {
+  const handleFocus = (e) => {
     setIsFocused(true);
-    if (event.target) {
-      event.target.style.height = `${event.target.scrollHeight}px`;
+    if (e.target) {
+      e.target.style.height = `${e.target.scrollHeight}px`;
     }
+    e.target.parentElement.style.borderColor= '#2196F3';
   };
 
-  const handleBlur = (event) => {
+  const handleBlur = (e) => {
     setIsFocused(false);
-    // event.target.style.minHeight = ""
-    event.target.style.height = "";
+    // e.target.style.minHeight = ""
+    e.target.style.height = "";
+    e.target.parentElement.style.borderColor= '';
   };
 
   useEffect(() => {

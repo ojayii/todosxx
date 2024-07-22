@@ -1,5 +1,5 @@
 .todoBox {
-    width: 97%;
+    width: 100%;
     position: relative;
     margin-bottom: 1rem;
     border-radius: 0.9rem;
@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     gap: 3px;
+    border: 2px solid transparent;
 }
 
 @media (min-width: 64rem) {
