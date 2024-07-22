@@ -307,7 +307,6 @@ function App() {
               style={{
                 color: swipeStatus === "true" && "#2196F3",
                 borderBottom: swipeStatus === "true" && "3px solid #2196F3",
-                backgroundColor: bgToggle === true && "black",
               }}>
               Pending
               {pendingTodosCount !== 0 && (
@@ -330,7 +329,6 @@ function App() {
               style={{
                 color: swipeStatus === "false" && "#2196F3",
                 borderBottom: swipeStatus === "false" && "3px solid #2196F3",
-                backgroundColor: bgToggle === true && "black",
               }}>
               Completed
               {completedTodosCount !== 0 && (

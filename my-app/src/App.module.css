@@ -181,12 +181,12 @@ header > form button img, .App footer button img {
     text-align: center;
     border-radius: 3px;
     border-bottom: 3px solid transparent;
-    transition: border-bottom 0.4s ease;
+    transition: border-bottom 150ms ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background-color: white;
+    background-color: inherit;
     font-weight: 500;
 }
 
@@ -267,7 +267,7 @@ header > form button img, .App footer button img {
     z-index: 1000;
     text-align: center;
     font-size: 1rem;
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     /* opacity: 0; */
 }
