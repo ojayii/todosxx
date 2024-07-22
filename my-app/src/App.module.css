@@ -233,6 +233,10 @@ header > form button img, .App footer button img {
     outline: none;
 }
 
+.App footer textarea::-webkit-scrollbar {
+    display: none;
+}
+
 .App footer button {
     right: 5%;
     bottom: 0.9rem;
@@ -248,6 +252,10 @@ header > form button img, .App footer button img {
     flex-direction: column;
     /* margin-top: 0.2rem; */
     padding-top: 2px;
+}
+
+.completed::-webkit-scrollbar, .pending::-webkit-scrollbar {
+    display: none;
 }
 
 .swipeBtns {

@@ -203,7 +203,7 @@ function App() {
     const isNewUser = !JSON.parse(localStorage.getItem("isNewUser")) || false;
     if (isNewUser) {
       localStorage.setItem("isNewUser", JSON.stringify(true));
-      const todoOne = { id: Date.now(), text: "Welcome to ToDos++" };
+      const todoOne = { id: Date(), text: "Welcome to ToDos++" };
       // const todoTwo = { id: Date.now() + 1, text: newTodoText };
       setTodos([todoOne, ...todos]);
     }
@@ -223,6 +223,16 @@ function App() {
       setCompletedTodosCount((count) => count + 1);
     });
   }, [completedTodos]);
+
+  const handleScroll = (event) => {
+    const deltaY = event.deltaY;
+    const isScrollAtTop = event.target.scrollTop === 0;
+    const isScrollAtBottom = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
+
+    if ((deltaY < 0 && isScrollAtTop) || (deltaY > 0 && isScrollAtBottom)) {
+      event.preventDefault();
+    }
+  }
 
   return (
     <div
@@ -354,7 +364,8 @@ function App() {
               <SlideNextButton swipeStatus={swipeStatus} />
               <div
                 className={styles.pending}
-                style={{ justifyContent: pendingTodosCount === 0 && "center" }}>
+                style={{ justifyContent: pendingTodosCount === 0 && "center" }}
+                onWheel={handleScroll}>
                 {!pendingTodosCount && (
                   <div
                     style={{ color: bgToggle ? "#DEDEDE" : "black" }}
@@ -384,7 +395,8 @@ function App() {
               <SlidePreviousButton swipeStatus={swipeStatus} />
               <div
                 className={styles.completed}
-                style={{ justifyContent: !completedTodosCount && "center" }}>
+                style={{ justifyContent: !completedTodosCount && "center" }}
+                onWheel={handleScroll}>
                 {!completedTodosCount && (
                   <div
                     style={{ color: bgToggle ? "#DEDEDE" : "black" }}
