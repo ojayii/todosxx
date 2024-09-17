@@ -23,7 +23,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: https://ojayii.github.io/todosxx
+- Live Site URL: https://ojayii.github.io/todo-list-page/
 
 ### Built with
 
